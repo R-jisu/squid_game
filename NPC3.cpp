@@ -4,7 +4,7 @@
 npc3::npc3(float x, float _speed)
 {
 	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
-	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
+	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 33, 618));
 
 	NPC.setSize(sf::Vector2f(34, 62));
 	NPC.setTexture(&texture);

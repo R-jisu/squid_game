@@ -5,7 +5,7 @@
 npc::npc(float x, float _speed)
 {
 	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
-	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
+	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 33, 618));
 
 	NPC.setSize(sf::Vector2f(34, 62));
 	NPC.setTexture(&texture);
@@ -49,9 +49,9 @@ void npc::Move(const float& deltaTime)
 		else
 			NPC.setPosition(NPC.getPosition().x - dt, NPC.getPosition().y);
 		break;
-	case 4:
+	/*case 4:
 		NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y + dt);
-		break;
+		break;*/
 	}
 }
 
