@@ -25,9 +25,6 @@ public:
 	State state = ready;
 	float watchtimer = 0;
 	Younhee();
-	void Soundfun();
-	bool Watching();
-	//void ChangeState(const float& deltaTime); // 플레이시간 끝나면 watch로 바꾸기함수
 	bool update(const float& deltaTime);
 	void draw(RenderWindow& _window);
 };

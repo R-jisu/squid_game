@@ -7,14 +7,6 @@
 
 using namespace sf;
 
-enum NPC2Direction {
-	npc2None,
-	npc2Up,
-	npc2Left,
-	npc2Right,
-	npc2Down
-};
-
 class npc2 : public Younhee
 {
 private:
@@ -22,13 +14,14 @@ private:
 	Animation* animations[5];//left, right, up, down, death
 	float speed;
 	float waiting = 0;
+	float stoptimer = 0;
+	int isstop = 0;
 public:
 	sf::RectangleShape NPC;
 	Texture texture;
-	NPC2Direction nextDir = npc2Up;
-	NPC2Direction currentDir = nextDir;
+	Texture texture1;
+	int currentDir = 0;
 	npc2(float x, float _speed);
-	bool Die(const float& deltaTime);
 	void moveLeft();
 	void moveRight();
 	void moveUp();

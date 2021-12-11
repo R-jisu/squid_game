@@ -1,12 +1,10 @@
-#include "NPC1.h"
+#include "NPC4.h"
 #include <iostream>
 #include <random>
-
-npc::npc(float x, float _speed)
+npc4::npc4(float x, float _speed)
 {
-	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
-	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
-
+	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
+	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
 	NPC.setSize(sf::Vector2f(34, 62));
 	NPC.setTexture(&texture);
 	SetupAnimations();
@@ -14,9 +12,10 @@ npc::npc(float x, float _speed)
 	speed = _speed;
 	NPC.setPosition(x, 600.0f - 60.0f);
 	animator->SetAnimationClip(animations[2]);
+
 }
 
-void npc::Move(const float& deltaTime)
+void npc4::Move(const float& deltaTime)
 {
 	float dt = speed * deltaTime;
 
@@ -29,6 +28,7 @@ void npc::Move(const float& deltaTime)
 		if (NPC.getPosition().y > 0.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
+			//animator->SetAnimationClip(animations[2]);
 		}
 		break;
 	case 2: //¿Þ
@@ -39,6 +39,7 @@ void npc::Move(const float& deltaTime)
 		}
 		else
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
+
 		break;
 	case 3://¿À¸¥
 		if (NPC.getPosition().x < 450.0f)
@@ -55,7 +56,7 @@ void npc::Move(const float& deltaTime)
 	}
 }
 
-void npc::update(const float& deltaTime)
+void npc4::update(const float& deltaTime)
 {
 	//currentDir = nextDir;
 	waiting += deltaTime;
@@ -70,7 +71,7 @@ void npc::update(const float& deltaTime)
 	//	return;
 
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
-	if (victory() == false && (Younhee::update(deltaTime))==false)
+	if (victory() == false && (Younhee::update(deltaTime)) == false)
 	{
 		Move(deltaTime);
 	}
@@ -80,10 +81,9 @@ void npc::update(const float& deltaTime)
 	}
 
 	animator->Update(deltaTime);
-
 }
 
-bool npc::victory()
+bool npc4::victory()
 {
 	if (NPC.getPosition().y <= 100 - 62)
 	{
@@ -92,17 +92,8 @@ bool npc::victory()
 	return false;
 }
 
-//bool npc::NPCDie(const float& deltaTime)
-//{
-//	if ((Younhee::update(deltaTime)) && (currentDir != 0))
-//	{
-//		dying = true;
-//		return dying;
-//	}
-//	
-//}
 
-void npc::SetupAnimations()
+void npc4::SetupAnimations()
 {
 	////right animation
 	//sf::Texture r1, r2,r3;
@@ -144,7 +135,7 @@ void npc::SetupAnimations()
 	//animations[4] = new Animation(StopAnimTextures, false, 0.20f);
 }
 
-void npc::draw(RenderWindow& _window)
+void npc4::draw(RenderWindow& _window)
 {
 	_window.draw(NPC);
 }

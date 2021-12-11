@@ -11,14 +11,13 @@ People::People()
 	SetupAnimations();
 	animator = new Animator(&people);
 	
-
 	people.setPosition(250 - 10.0f, 600.0f - 60.0f);
 
 }
 
 void People::Move(const float& deltaTime)
 {
-	float dt = 20 * deltaTime;
+	float dt = 30 * deltaTime;
 
 	switch (currentDir)
 	{

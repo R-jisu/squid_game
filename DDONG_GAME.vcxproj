@@ -158,7 +158,8 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="NPC1.h" />
     <ClInclude Include="NPC2.h" />
-    <ClInclude Include="NPC_GEN.h" />
+    <ClInclude Include="NPC3.h" />
+    <ClInclude Include="NPC4.h" />
     <ClInclude Include="People.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,10 +168,11 @@
     <ClCompile Include="Audio\AudioManager.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="NPC2.cpp" />
-    <ClCompile Include="NPC_GEN.cpp" />
+    <ClCompile Include="NPC4.cpp" />
     <ClCompile Include="NPC1.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="People.cpp" />
+    <ClCompile Include="NPC3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

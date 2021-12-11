@@ -6,6 +6,8 @@
 #include "Common.h"
 #include "NPC1.h"
 #include "NPC2.h"
+#include "NPC3.h"
+#include "NPC4.h"
 #include <Windows.h>
 #include "enemy.h"
 
@@ -50,6 +52,9 @@ int main()
 
 	People people;
 	npc Npc1(rand() % 500, rand() % 20 + 10);
+	npc2 Npc2(rand() % 500, rand() % 20 + 10);
+	npc3 Npc3(rand() % 500, rand() % 20 + 10);
+	npc4 Npc4(rand() % 500, rand() % 20 + 10);
 	Younhee younghee;
 
 	//int flag = 1;
@@ -100,15 +105,19 @@ int main()
 		}
 
 		Npc1.update(deltaTime);
+		Npc2.update(deltaTime);
+		Npc3.update(deltaTime);
+		Npc4.update(deltaTime);
 
-		//people.update(deltaTime);
-		//npcs.update(deltaTime);
 		younghee.update(deltaTime);
 
 		window.clear(Color(255, 255, 255));
 		window.draw(mapSprite);
 		younghee.draw(window);
 		Npc1.draw(window);
+		Npc2.draw(window);
+		Npc3.draw(window);
+		Npc4.draw(window);
 		people.draw(window);
 
 		window.display();

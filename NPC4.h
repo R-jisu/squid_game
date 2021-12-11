@@ -1,38 +1,32 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "enemy.h"
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
+#include "enemy.h"
 
 using namespace sf;
 
-enum Direction {
-	None,
-	Up,
-	Left,
-	Right,
-	Down
-};
-
-
-class People : public Younhee
+class npc4 : public Younhee
 {
 private:
 	Animator* animator;
 	Animation* animations[5];//left, right, up, down, death
+	float speed;
+	float waiting = 0;
+	float stoptimer = 0;
+	int isstop = 0;
 public:
-	sf::RectangleShape people;
+	sf::RectangleShape NPC;
 	Texture texture;
-	Direction nextDir= None;
-	Direction currentDir = nextDir;
-	People();
+	Texture texture1;
+	int currentDir = 0;
+	npc4(float x, float _speed);
 	void moveLeft();
 	void moveRight();
 	void moveUp();
 	void moveDown();
 	void Move(const float& deltaTime);
-	bool Die(const float& deltaTime);
 	bool victory();
 	void update(const float& deltaTime);
 	void draw(RenderWindow& _window);

@@ -12,40 +12,13 @@ Younhee::Younhee()
 	younhee.setPosition(220,5);
 }
 
-void Younhee::Soundfun() {
-	audio.PlaySound(Sounds::GameStart, false, VOLUME);
-}
-
-//void Younhee::ChangeState(const float& deltaTime)
-//{
-//	if (!(audio.IsPlayingAudio(Sounds::Death))) //무궁화 꽃이 피었습니다~
-//	//if (state!=watch) //무궁화 꽃이 피었습니다~
-//	{
-//		watchtimer += deltaTime;
-//
-//		state = watch;
-//		iswatching = true;
-//		younhee.setTexture(&texture_front);
-//	}
-//	else
-//		cout << "dmddo" << endl;
-//	//else
-//		//iswatchiawdng = false;
-//} 
-
-bool Younhee::Watching()
-{
-	cout << iswatching << endl;
-	return iswatching;
-}
-
 
 bool Younhee::update(const float& deltaTime)
 {
 	if (flag == 1)
 	{
 		watchtimer += deltaTime;
-		if (watchtimer >= 4)
+		if (watchtimer >= 5)
 		{
 			state = watch;
 			younhee.setTexture(&texture_front);
@@ -58,7 +31,6 @@ bool Younhee::update(const float& deltaTime)
 	if (flag == 0 &&!(audio.IsPlayingAudio(Sounds::Death))&& !(audio.IsPlayingAudio(Sounds::GameStart)))
 	{
 		watchtimer += deltaTime;
-
 		state = watch;
 		iswatching = true;
 		younhee.setTexture(&texture_front);
@@ -72,6 +44,7 @@ bool Younhee::update(const float& deltaTime)
 	if (watchtimer >= 5)
 	{
 		state = ready;
+		iswatching = false;
 		younhee.setTexture(&texture_back);
 		audio.PlaySound(Sounds::Death ,false, VOLUME);
 		watchtimer = 0;
