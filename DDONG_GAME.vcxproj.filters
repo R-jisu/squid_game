@@ -33,20 +33,6 @@
     <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\openal32.dll">
       <Filter>Resources</Filter>
     </None>
-    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\hit_sound.ogg">
-      <Filter>Resources</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\hit_people.png">
-      <Filter>Resources</Filter>
-    </Image>
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\ddong.png">
-      <Filter>Resources</Filter>
-    </Image>
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\people.PNG">
-      <Filter>Resources</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\arial.ttf">
@@ -57,10 +43,10 @@
     <ClInclude Include="People.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Ddong.h">
+    <ClInclude Include="NPC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Ddong_GEN.h">
+    <ClInclude Include="NPC_GEN.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Animation\Animation.h">
@@ -78,12 +64,15 @@
     <ClInclude Include="Animation\Animator.h">
       <Filter>소스 파일\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ddong.cpp">
+    <ClCompile Include="NPC_GEN.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Ddong_GEN.cpp">
+    <ClCompile Include="NPC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -100,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="Animation\Animator.cpp">
       <Filter>소스 파일\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

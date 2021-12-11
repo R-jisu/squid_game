@@ -142,15 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\hit_sound.ogg" />
     <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\openal32.dll" />
     <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\sfml-audio-2.dll" />
     <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\sfml-audio-d-2.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\ddong.png" />
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\hit_people.png" />
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\people.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\arial.ttf" />
@@ -161,16 +155,18 @@
     <ClInclude Include="Audio\AudioAssets.h" />
     <ClInclude Include="Audio\AudioManager.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="Ddong.h" />
-    <ClInclude Include="Ddong_GEN.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="NPC.h" />
+    <ClInclude Include="NPC_GEN.h" />
     <ClInclude Include="People.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
     <ClCompile Include="Audio\AudioManager.cpp" />
-    <ClCompile Include="Ddong.cpp" />
-    <ClCompile Include="Ddong_GEN.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="NPC_GEN.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="People.cpp" />
   </ItemGroup>

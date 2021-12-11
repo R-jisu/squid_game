@@ -15,7 +15,6 @@ People::People()
 
 }
 
-
 void People::Move(const float& deltaTime)
 {
 	float dt = 140 * deltaTime;
@@ -29,7 +28,9 @@ void People::Move(const float& deltaTime)
 			people.setPosition(people.getPosition().x, people.getPosition().y - dt);
 		break;
 	case Down:
-			people.setPosition(people.getPosition().x, people.getPosition().y + dt);
+		if (people.getPosition().y >= 600-60)
+			return;
+		people.setPosition(people.getPosition().x, people.getPosition().y + dt);
 		break;
 	case Left:
 			people.setPosition(people.getPosition().x - dt, people.getPosition().y);
@@ -40,7 +41,7 @@ void People::Move(const float& deltaTime)
 	}
 }
 
-void People::update(Ddong_GEN& ddongs, const float& deltaTime)
+void People::update(const float& deltaTime)
 {
 	FloatRect pos = people.getGlobalBounds();
 	if(victory()==false)
@@ -90,7 +91,6 @@ bool People::victory()
 	return false;
 }
 
-
 void People::SetupAnimations()
 {
 	//right animation
@@ -136,7 +136,6 @@ void People::SetupAnimations()
 	//animations[3] = new Animation(downAnimTextures);
 	animations[4] = new Animation(StopAnimTextures, false, 0.20f);
 }
-
 
 void People::draw(RenderWindow& _window)
 {

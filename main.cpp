@@ -2,9 +2,11 @@
 #include <string>
 #include <iostream>
 #include "People.h"
-#include "Ddong_GEN.h"
 #include "Common.h"
+#include "NPC.h"
+#include "NPC_GEN.h"
 #include <Windows.h>
+#include "enemy.h"
 
 using namespace sf;
 using namespace std;
@@ -46,7 +48,8 @@ int main()
 	//}
 
 	People people;
-	Ddong_GEN ddongs;
+	NPC_GEN npcs;
+	Younhee younghee;
 
 	while (window.isOpen())
 	{
@@ -59,31 +62,10 @@ int main()
 			case Event::Closed:
 				window.close();
 				break;
-		/*	case Event::KeyPressed:
-				if (Keyboard::isKeyPressed(Keyboard::Left) == true)
-				{
-					people.Move(deltaTime,Left);
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Right) == true)
-				{
-					people.Move(deltaTime, Right);
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Up) == true)
-				{
-					people.Move(deltaTime, Up);
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Down) == true)
-				{
-					people.Move(deltaTime, Down);
-				}
-				break;*/
 			default:
 				break;
 			}
 		}
-
-		people.update(ddongs, deltaTime);
-
 
 		if (people.victory())
 		{
@@ -93,17 +75,18 @@ int main()
 			window.close();
 		}
 
-		ddongs.update();
+		
+
+		people.update(deltaTime);
+		npcs.update(deltaTime);
+		younghee.update(deltaTime);
 
 		window.clear(Color(255, 255, 255));
 		window.draw(mapSprite);
+		younghee.draw(window);
 		people.draw(window);
-		ddongs.draw(window);
+		npcs.draw(window);
 
-		/*if (cur_score <= 0)
-		{
-			window.close();
-		}*/
 
 		window.display();
 	}

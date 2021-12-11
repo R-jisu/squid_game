@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "Ddong_GEN.h"
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
 
@@ -34,7 +33,7 @@ public:
 	void moveDown();
 	void Move(const float& deltaTime);
 	bool victory();
-	void update(Ddong_GEN& ddongs, const float& deltaTime);
+	void update(const float& deltaTime);
 	void draw(RenderWindow& _window);
 	void SetupAnimations();
 };
