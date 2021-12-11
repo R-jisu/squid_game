@@ -1,15 +1,17 @@
 #include <SFML/Graphics.hpp>
+#include "SFML/Audio.hpp"
 #include <string>
 #include <iostream>
 #include "People.h"
 #include "Common.h"
-#include "NPC.h"
-#include "NPC_GEN.h"
+#include "NPC1.h"
+#include "NPC2.h"
 #include <Windows.h>
 #include "enemy.h"
 
 using namespace sf;
 using namespace std;
+float dying = 0;
 
 int main()
 {
@@ -32,7 +34,6 @@ int main()
 	{
 		std::cout << "texture not loaded correctly" << std::endl;
 	}
-
 	//sf::Sprite gameOverTextSprite;
 	//sf::Texture gameOverTextTexture;
 
@@ -48,11 +49,18 @@ int main()
 	//}
 
 	People people;
-	NPC_GEN npcs;
+	npc Npc1(rand() % 500, rand() % 20 + 10);
 	Younhee younghee;
+
+	//int flag = 1;
 
 	while (window.isOpen())
 	{
+		/*if (flag == 1)
+		{
+			younghee.Soundfun();
+			flag = 0;
+		}*/
 		deltaTime = clock.restart().asSeconds();
 		Event event;
 		while (window.pollEvent(event))
@@ -75,18 +83,33 @@ int main()
 			window.close();
 		}
 
-		
+		if (people.Die(deltaTime))
+		{
+			// 타이머 2초 주고 
+			dying += deltaTime;
+			//사망
+			if (dying >= 2)
+			{
+				window.clear();
+				window.close();
+			}
+		}
+		else
+		{
+			people.update(deltaTime);
+		}
 
-		people.update(deltaTime);
-		npcs.update(deltaTime);
+		Npc1.update(deltaTime);
+
+		//people.update(deltaTime);
+		//npcs.update(deltaTime);
 		younghee.update(deltaTime);
 
 		window.clear(Color(255, 255, 255));
 		window.draw(mapSprite);
 		younghee.draw(window);
+		Npc1.draw(window);
 		people.draw(window);
-		npcs.draw(window);
-
 
 		window.display();
 	}

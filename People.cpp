@@ -1,4 +1,5 @@
 #include "People.h"
+#include "enemy.h"
 #include <iostream>
 
 People::People()
@@ -11,13 +12,13 @@ People::People()
 	animator = new Animator(&people);
 	
 
-	people.setPosition(250 - 10.0f, 600.0f - 30.0f);
+	people.setPosition(250 - 10.0f, 600.0f - 60.0f);
 
 }
 
 void People::Move(const float& deltaTime)
 {
-	float dt = 140 * deltaTime;
+	float dt = 20 * deltaTime;
 
 	switch (currentDir)
 	{
@@ -89,6 +90,16 @@ bool People::victory()
 		return true;
 	}
 	return false;
+}
+
+bool People::Die(const float& deltaTime)
+{
+	if ((Younhee::update(deltaTime)) && (currentDir != None))
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
 void People::SetupAnimations()

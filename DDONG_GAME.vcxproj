@@ -156,7 +156,8 @@
     <ClInclude Include="Audio\AudioManager.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="enemy.h" />
-    <ClInclude Include="NPC.h" />
+    <ClInclude Include="NPC1.h" />
+    <ClInclude Include="NPC2.h" />
     <ClInclude Include="NPC_GEN.h" />
     <ClInclude Include="People.h" />
   </ItemGroup>
@@ -165,8 +166,9 @@
     <ClCompile Include="Animation\Animator.cpp" />
     <ClCompile Include="Audio\AudioManager.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="NPC2.cpp" />
     <ClCompile Include="NPC_GEN.cpp" />
-    <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NPC1.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="People.cpp" />
   </ItemGroup>

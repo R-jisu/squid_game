@@ -1,17 +1,16 @@
-#include "NPC.h"
+#include "NPC1.h"
 #include <iostream>
 #include <random>
 npc::npc(float x, float _speed)
 {
-	texture.loadFromFile("Resources/npc.png", sf::IntRect(0, 62, 35, 124));
+	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
 
-	NPC.setSize(sf::Vector2f(36, 62));
+	NPC.setSize(sf::Vector2f(34, 62));
 	NPC.setTexture(&texture);
 	SetupAnimations();
 	animator = new Animator(&NPC);
 	speed = _speed;
-	NPC.setPosition(x, 600.0f - 30.0f);
-
+	NPC.setPosition(x, 600.0f - 60.0f);
 }
 
 void npc::Move(const float& deltaTime)
@@ -43,6 +42,7 @@ void npc::update(const float& deltaTime)
 	FloatRect pos = NPC.getGlobalBounds();
 
 	currentDir = nextDir;
+	animator->SetAnimationClip(animations[2]);
 
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
 	if (victory() == false)
@@ -52,6 +52,7 @@ void npc::update(const float& deltaTime)
 
 }
 
+
 bool npc::victory()
 {
 	if (NPC.getPosition().y <= 100 - 62)
@@ -59,6 +60,16 @@ bool npc::victory()
 		return true;
 	}
 	return false;
+}
+
+bool npc::Die(const float& deltaTime)
+{
+	if ((Younhee::update(deltaTime)) && (currentDir != npcNone))
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
 void npc::SetupAnimations()
@@ -79,9 +90,9 @@ void npc::SetupAnimations()
 
 	//up animation
 	sf::Texture u1, u2, u3;
-	u1.loadFromFile("Resources/npc.png", sf::IntRect(34, 62, 68, 124));
-	u2.loadFromFile("Resources/npc.png", sf::IntRect(0, 62, 33, 124));
-	u3.loadFromFile("Resources/npc.png", sf::IntRect(69, 62, 103, 124));
+	u1.loadFromFile("Resources/npc.png", sf::IntRect(0, 619, 34, 681));
+	u2.loadFromFile("Resources/npc.png", sf::IntRect(0, 682, 34, 744));
+	u3.loadFromFile("Resources/npc.png", sf::IntRect(0, 556, 34, 618));
 	std::vector<sf::Texture> upAnimTextures{ u1,u2,u3 };
 
 	//down animation

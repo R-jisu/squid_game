@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
+#include "enemy.h"
 
 using namespace sf;
 
@@ -14,20 +15,20 @@ enum NPCDirection {
 	npcDown
 };
 
-class npc
+class npc : public Younhee
 {
 private:
 	Animator* animator;
 	Animation* animations[5];//left, right, up, down, death
 	float speed;
+	float waiting = 0;
 public:
-	Sound sound;
-	SoundBuffer buffer;
 	sf::RectangleShape NPC;
 	Texture texture;
 	NPCDirection nextDir = npcUp;
 	NPCDirection currentDir = nextDir;
 	npc(float x, float _speed);
+	bool Die(const float& deltaTime);
 	void moveLeft();
 	void moveRight();
 	void moveUp();
