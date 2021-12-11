@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
+    <ClInclude Include="Animation\Animator.h" />
     <ClInclude Include="Audio\AudioAssets.h" />
     <ClInclude Include="Audio\AudioManager.h" />
     <ClInclude Include="Common.h" />
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Animation\Animator.cpp" />
     <ClCompile Include="Audio\AudioManager.cpp" />
     <ClCompile Include="Ddong.cpp" />
     <ClCompile Include="Ddong_GEN.cpp" />

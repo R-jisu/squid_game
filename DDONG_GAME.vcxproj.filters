@@ -75,6 +75,9 @@
     <ClInclude Include="Common.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Animation\Animator.h">
+      <Filter>소스 파일\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ddong.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="Audio\AudioManager.cpp">
       <Filter>소스 파일\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animator.cpp">
+      <Filter>소스 파일\Animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

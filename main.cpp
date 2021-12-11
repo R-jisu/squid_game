@@ -9,14 +9,12 @@
 using namespace sf;
 using namespace std;
 
-float aspectRatio;
-
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Pacman");
-	aspectRatio = float(window.getSize().x) / float(window.getSize().y - 100);
-	sf::View v(sf::Vector2f(400, 450), sf::Vector2f(800 * aspectRatio, 900));
-	window.setView(v);
+	sf::Clock clock;
+	float deltaTime = 0;
+
+	sf::RenderWindow window(sf::VideoMode(500, 600), "Pacman");
 
 	sf::Sprite mapSprite;
 	sf::Texture mapTexture;
@@ -26,7 +24,6 @@ int main()
 	{
 		mapTexture.setSmooth(false);
 		mapSprite.setTexture(mapTexture);
-		mapSprite.setScale((window.getView().getSize().x) / (mapSprite.getLocalBounds().width * aspectRatio), (window.getView().getSize().y - 100) / mapSprite.getLocalBounds().height);
 		mapSprite.move(0, 1);
 	}
 	else
@@ -34,12 +31,26 @@ int main()
 		std::cout << "texture not loaded correctly" << std::endl;
 	}
 
+	//sf::Sprite gameOverTextSprite;
+	//sf::Texture gameOverTextTexture;
+
+	//if (gameOverTextTexture.loadFromFile("Resources/ready-gameover.png", sf::IntRect(0, 0, 175, 22)))
+	//{
+	//	gameOverTextTexture.setSmooth(false);
+	//	gameOverTextSprite.setTexture(gameOverTextTexture);
+	//	gameOverTextSprite.move(310, 438);
+	//}
+	//else
+	//{
+	//	std::cout << "texture not loaded correctly" << std::endl;
+	//}
+
 	People people;
 	Ddong_GEN ddongs;
 
 	while (window.isOpen())
 	{
-
+		deltaTime = clock.restart().asSeconds();
 		Event event;
 		while (window.pollEvent(event))
 		{
@@ -57,14 +68,30 @@ int main()
 				{
 					people.moveRight();
 				}
+				else if (Keyboard::isKeyPressed(Keyboard::Up) == true)
+				{
+					people.moveUp();
+				}
+				else if (Keyboard::isKeyPressed(Keyboard::Down) == true)
+				{
+					people.moveDown();
+				}
 				break;
 			default:
 				break;
 			}
 		}
 
+		if (people.victory())
+		{
+			//½Â¸®
+			window.clear();
+			//window.draw(victorySprite);
+			window.close();
+		}
+
 		ddongs.update();
-		people.update(ddongs);
+		people.update(ddongs, deltaTime);
 
 		window.clear(Color(255, 255, 255));
 		window.draw(mapSprite);

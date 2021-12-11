@@ -2,25 +2,29 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Ddong_GEN.h"
+#include "Animation/Animation.h"
+#include "Animation/Animator.h"
 
 using namespace sf;
+
 
 class People
 {
 private:
-	Sprite people;
-	bool hitted;
-	int hit_time;
-	Clock clock;
-	float time = 0;
+	Animator* animator;
+	Animation* animations[4];//left, right, up, down, death
 public:
 	Sound sound;
 	SoundBuffer buffer;
-	Texture people_texture;
-	Texture hit_people_texture;
+	sf::RectangleShape people;
+	Texture texture;
 	People();
 	void moveLeft();
 	void moveRight();
-	void update(Ddong_GEN& ddongs);
+	void moveUp();
+	void moveDown();
+	bool victory();
+	void update(Ddong_GEN& ddongs, const float& deltaTime);
 	void draw(RenderWindow& _window);
+	void SetupAnimations();
 };

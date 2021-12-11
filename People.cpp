@@ -3,18 +3,17 @@
 
 People::People()
 {
-	people_texture.loadFromFile("people.PNG");
-	hit_people_texture.loadFromFile("hit_people.png");
-	buffer.loadFromFile("hit_sound.ogg");
-	sound.setBuffer(buffer);
+	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 35, 124));
 
-	people.setTexture(people_texture);
+	people.setSize(sf::Vector2f(36, 62));
+	people.setTexture(&texture);
+	SetupAnimations();
+	animator = new Animator(&people);
+	
+	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 35, 124));
 
-	people.setTextureRect(IntRect(0, 0, 30, 30));
-	people.setPosition(180.0f - 10.0f, 480.0f - 30.0f);
+	people.setPosition(250 - 10.0f, 600.0f - 30.0f);
 
-	hitted = false;
-	hit_time = 0;
 }
 
 void People::moveLeft()
@@ -24,47 +23,101 @@ void People::moveLeft()
 		return;
 	}
 	people.move(-10.0f, 0.0f);
+	animator->SetAnimationClip(animations[0]);
+
 }
 
 void People::moveRight()
 {
-	if (people.getPosition().x >= 360.0f - 20.0f)
+	if (people.getPosition().x >= 500.0f - 20.0f)
 	{
 		return;
 	}
 	people.move(10.0f, 0.0f);
+	animator->SetAnimationClip(animations[1]);
+
 }
 
-void People::update(Ddong_GEN& ddongs)
+void People::moveUp()
 {
-	/*
-		똥에 맞았는지 판단하는 코드와 맞았을 때 동작에 대한 코드 작성
-	*/
-	time = clock.getElapsedTime().asSeconds();
-	FloatRect pos = people.getGlobalBounds();
-
-	//똥젠 히트박스 bool 체크
-	hitted = ddongs.checkHit(pos);
-
-	if (time >= 1.0f)
-		people.setTexture(people_texture);
-
-	if (hitted == true)
+	if (people.getPosition().y <= 20.0f)
 	{
-
-		sound.play();
-
-		people.setTexture(hit_people_texture);
-
-		clock.restart();
-
-		hit_time++;
-		hitted = false;
+		return;
 	}
+	people.move(0.0f, -10.0f);
+	animator->SetAnimationClip(animations[2]);
+}
+
+void People::moveDown()
+{
+	if (people.getPosition().y >= 600.0f-30.0f)
+	{
+		return;
+	}
+	people.move(0.0f, 10.0f);
+}
+
+void People::update(Ddong_GEN& ddongs, const float& deltaTime)
+{
+	FloatRect pos = people.getGlobalBounds();
+	animator->Update(deltaTime);
 
 }
+
+bool People::victory()
+{
+	if (people.getPosition().y <= 100 - 62)
+	{
+		return true;
+	}
+	return false;
+}
+
+
+void People::SetupAnimations()
+{
+	//right animation
+	sf::Texture r1, r2;
+	//sf::Texture r1, r2,r3;
+	r1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 0, 33, 61));
+	r2.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 0, 67, 61));
+	//r3.loadFromFile("Resources/maincharacter.png", sf::IntRect(262, 1, 13, 13));
+	//std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
+	std::vector<sf::Texture> rightAnimTextures{ r1,r2};
+
+	//left animation
+	//sf::Texture l1, l2, l3;
+	sf::Texture l1, l2;
+	l1.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 1, 103, 62));
+	l2.loadFromFile("Resources/maincharacter.png", sf::IntRect(104, 1, 136, 62));
+	//l3.loadFromFile("Resources/maincharacter.png", sf::IntRect(262, 17, 13, 13));
+	//std::vector<sf::Texture> leftAnimTextures{ l1,l2,l3 };
+	std::vector<sf::Texture> leftAnimTextures{ l1,l2};
+
+	//up animation
+	sf::Texture u1, u2, u3;
+	u1.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 62, 68, 124));
+	u2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 33, 124));
+	u3.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 62, 103, 124));
+	std::vector<sf::Texture> upAnimTextures{ u1,u2,u3 };
+
+	//down animation
+	//sf::Texture d1, d2, d3;
+	//d1.loadFromFile("Resources/PacManSprites.png", sf::IntRect(230, 49, 13, 13));
+	//d2.loadFromFile("Resources/PacManSprites.png", sf::IntRect(246, 49, 13, 13));
+	//d3.loadFromFile("Resources/PacManSprites.png", sf::IntRect(262, 49, 13, 13));
+	//std::vector<sf::Texture> downAnimTextures{ d1, d2, d3 };
+
+	animations[0] = new Animation(leftAnimTextures);
+	animations[1] = new Animation(rightAnimTextures);
+	animations[2] = new Animation(upAnimTextures);
+	//animations[3] = new Animation(downAnimTextures);
+	//animations[4] = new Animation(deathAnimTextures, false, 0.20f);
+}
+
 
 void People::draw(RenderWindow& _window)
 {
 	_window.draw(people);
 }
+
