@@ -59,28 +59,31 @@ int main()
 			case Event::Closed:
 				window.close();
 				break;
-			case Event::KeyPressed:
+		/*	case Event::KeyPressed:
 				if (Keyboard::isKeyPressed(Keyboard::Left) == true)
 				{
-					people.moveLeft();
+					people.Move(deltaTime,Left);
 				}
 				else if (Keyboard::isKeyPressed(Keyboard::Right) == true)
 				{
-					people.moveRight();
+					people.Move(deltaTime, Right);
 				}
 				else if (Keyboard::isKeyPressed(Keyboard::Up) == true)
 				{
-					people.moveUp();
+					people.Move(deltaTime, Up);
 				}
 				else if (Keyboard::isKeyPressed(Keyboard::Down) == true)
 				{
-					people.moveDown();
+					people.Move(deltaTime, Down);
 				}
-				break;
+				break;*/
 			default:
 				break;
 			}
 		}
+
+		people.update(ddongs, deltaTime);
+
 
 		if (people.victory())
 		{
@@ -91,7 +94,6 @@ int main()
 		}
 
 		ddongs.update();
-		people.update(ddongs, deltaTime);
 
 		window.clear(Color(255, 255, 255));
 		window.draw(mapSprite);

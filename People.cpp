@@ -10,56 +10,73 @@ People::People()
 	SetupAnimations();
 	animator = new Animator(&people);
 	
-	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 35, 124));
 
 	people.setPosition(250 - 10.0f, 600.0f - 30.0f);
 
 }
 
-void People::moveLeft()
+
+void People::Move(const float& deltaTime)
 {
-	if (people.getPosition().x <= 0.0f)
+	float dt = 140 * deltaTime;
+
+	switch (currentDir)
 	{
+	case None:
+		people.setPosition(people.getPosition().x, people.getPosition().y);
 		return;
+	case Up:
+			people.setPosition(people.getPosition().x, people.getPosition().y - dt);
+		break;
+	case Down:
+			people.setPosition(people.getPosition().x, people.getPosition().y + dt);
+		break;
+	case Left:
+			people.setPosition(people.getPosition().x - dt, people.getPosition().y);
+		break;
+	case Right:
+			people.setPosition(people.getPosition().x + dt, people.getPosition().y);
+		break;
 	}
-	people.move(-10.0f, 0.0f);
-	animator->SetAnimationClip(animations[0]);
-
-}
-
-void People::moveRight()
-{
-	if (people.getPosition().x >= 500.0f - 20.0f)
-	{
-		return;
-	}
-	people.move(10.0f, 0.0f);
-	animator->SetAnimationClip(animations[1]);
-
-}
-
-void People::moveUp()
-{
-	if (people.getPosition().y <= 20.0f)
-	{
-		return;
-	}
-	people.move(0.0f, -10.0f);
-	animator->SetAnimationClip(animations[2]);
-}
-
-void People::moveDown()
-{
-	if (people.getPosition().y >= 600.0f-30.0f)
-	{
-		return;
-	}
-	people.move(0.0f, 10.0f);
 }
 
 void People::update(Ddong_GEN& ddongs, const float& deltaTime)
 {
 	FloatRect pos = people.getGlobalBounds();
+	if(victory()==false)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+		{
+			nextDir = Up;
+			animator->SetAnimationClip(animations[2]);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+		{
+			nextDir = Down;
+			animator->SetAnimationClip(animations[2]);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+		{
+			nextDir = Left;
+			animator->SetAnimationClip(animations[0]);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+		{
+			nextDir = Right;
+			animator->SetAnimationClip(animations[1]);
+
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+		{
+			nextDir = None;
+			animator->SetAnimationClip(animations[4]);
+
+		}
+		
+		currentDir = nextDir;
+		Move(deltaTime);
+
+	}
 	animator->Update(deltaTime);
 
 }
@@ -108,11 +125,16 @@ void People::SetupAnimations()
 	//d3.loadFromFile("Resources/PacManSprites.png", sf::IntRect(262, 49, 13, 13));
 	//std::vector<sf::Texture> downAnimTextures{ d1, d2, d3 };
 
+	//stop animation
+	sf::Texture s1;
+	s1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 33, 124));
+	std::vector<sf::Texture> StopAnimTextures{ s1 };
+
 	animations[0] = new Animation(leftAnimTextures);
 	animations[1] = new Animation(rightAnimTextures);
 	animations[2] = new Animation(upAnimTextures);
 	//animations[3] = new Animation(downAnimTextures);
-	//animations[4] = new Animation(deathAnimTextures, false, 0.20f);
+	animations[4] = new Animation(StopAnimTextures, false, 0.20f);
 }
 
 
