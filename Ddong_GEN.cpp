@@ -9,7 +9,7 @@ Ddong_GEN::Ddong_GEN()
 
 }
 
-void Ddong_GEN::update(Score& score)
+void Ddong_GEN::update()
 {
 	time = clock.getElapsedTime().asMilliseconds();
 
@@ -22,7 +22,7 @@ void Ddong_GEN::update(Score& score)
 
 	for (auto& _e : ddongs)
 	{
-		_e.update(score);
+		_e.update();
 	}
 }
 

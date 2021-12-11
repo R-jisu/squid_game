@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Ddong_GEN.h"
-#include "Score.h"
 
 using namespace sf;
 
@@ -22,6 +21,6 @@ public:
 	People();
 	void moveLeft();
 	void moveRight();
-	void update(Ddong_GEN& ddongs, Score& score);
+	void update(Ddong_GEN& ddongs);
 	void draw(RenderWindow& _window);
 };

@@ -6,7 +6,7 @@ Ddong::Ddong(float _x, float _speed, Texture& ddong_texture, Sprite& ddong) : x(
 	ddong.setPosition(_x, 0);
 }
 
-void Ddong::update(Score& score)
+void Ddong::update()
 {
 	if (destroyed == true)
 	{
@@ -17,7 +17,6 @@ void Ddong::update(Score& score)
 	if (pos.y > 480.0f)
 	{
 		destroyed = true;
-		score.upScore();
 	}
 	ddong.move(0.0f, 1.0f * speed);
 }

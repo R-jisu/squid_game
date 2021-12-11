@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Score.h"
 
 using namespace std;
 using namespace sf;
@@ -15,7 +14,7 @@ private:
 public:
 	bool destroyed = false;
 	Ddong(float _x, float _speed, Texture& ddong_texture, Sprite& ddong);
-	void update(Score& score);
+	void update();
 	void draw(RenderWindow& _window);
 	FloatRect getArea();
 };

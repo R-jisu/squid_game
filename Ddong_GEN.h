@@ -3,7 +3,6 @@
 #include <random>
 #include <SFML/Audio.hpp>
 #include "Ddong.h"
-#include "Score.h"
 
 using namespace std;
 using namespace sf;
@@ -19,7 +18,7 @@ public:
 	Clock clock;
 	float time = 0;
 	Ddong_GEN();
-	void update(Score& score);
+	void update();
 	void draw(RenderWindow& _window);
 	bool checkHit(FloatRect _rect);
 };

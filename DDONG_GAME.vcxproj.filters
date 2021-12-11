@@ -13,72 +13,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{a7306d0f-f068-4252-b157-1ab2b488f62b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation">
+      <UniqueIdentifier>{57ce95b7-d9a0-491b-b3ad-a1d547e6db5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Audio">
+      <UniqueIdentifier>{5a9eb341-c8fe-44da-b245-acd3f24893a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\People.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\Score.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\Ddong.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\Ddong_GEN.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\openal32.dll">
-      <Filter>소스 파일</Filter>
-    </None>
-    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\README.md">
-      <Filter>소스 파일</Filter>
+    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\sfml-audio-d-2.dll">
+      <Filter>Resources</Filter>
     </None>
     <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\sfml-audio-2.dll">
-      <Filter>소스 파일</Filter>
+      <Filter>Resources</Filter>
     </None>
-    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\sfml-audio-d-2.dll">
-      <Filter>소스 파일</Filter>
-    </None>
-    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\AVOID_DDONG_GAME">
-      <Filter>소스 파일</Filter>
+    <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\openal32.dll">
+      <Filter>Resources</Filter>
     </None>
     <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\hit_sound.ogg">
-      <Filter>소스 파일</Filter>
+      <Filter>Resources</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\People.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\Score.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\Ddong.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\Ddong_GEN.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\people.PNG">
-      <Filter>소스 파일</Filter>
+    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\hit_people.png">
+      <Filter>Resources</Filter>
     </Image>
     <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\ddong.png">
-      <Filter>소스 파일</Filter>
+      <Filter>Resources</Filter>
     </Image>
-    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\hit_people.png">
-      <Filter>소스 파일</Filter>
+    <Image Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\people.PNG">
+      <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\arial.ttf">
-      <Filter>소스 파일</Filter>
+      <Filter>Resources</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="People.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ddong.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ddong_GEN.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Animation.h">
+      <Filter>소스 파일\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioAssets.h">
+      <Filter>소스 파일\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioManager.h">
+      <Filter>소스 파일\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ddong.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Ddong_GEN.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="People.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animation.cpp">
+      <Filter>소스 파일\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\AudioManager.cpp">
+      <Filter>소스 파일\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

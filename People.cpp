@@ -35,7 +35,7 @@ void People::moveRight()
 	people.move(10.0f, 0.0f);
 }
 
-void People::update(Ddong_GEN& ddongs, Score& score)
+void People::update(Ddong_GEN& ddongs)
 {
 	/*
 		똥에 맞았는지 판단하는 코드와 맞았을 때 동작에 대한 코드 작성
@@ -57,7 +57,6 @@ void People::update(Ddong_GEN& ddongs, Score& score)
 		people.setTexture(hit_people_texture);
 
 		clock.restart();
-		score.downScore();
 
 		hit_time++;
 		hitted = false;
