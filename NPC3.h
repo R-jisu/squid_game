@@ -29,7 +29,7 @@ public:
 	void moveDown();
 	void Move(const float& deltaTime);
 	bool victory();
-	void update(const float& deltaTime);
+	void update(const float& deltaTime, bool iswatching);
 	void draw(RenderWindow& _window);
 	void SetupAnimations();
 };

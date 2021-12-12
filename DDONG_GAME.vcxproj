@@ -161,6 +161,7 @@
     <ClInclude Include="NPC3.h" />
     <ClInclude Include="NPC4.h" />
     <ClInclude Include="People.h" />
+    <ClInclude Include="Rendernpc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="People.cpp" />
     <ClCompile Include="NPC3.cpp" />
+    <ClCompile Include="Rendernpc.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

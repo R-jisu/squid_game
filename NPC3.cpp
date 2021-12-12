@@ -57,7 +57,7 @@ void npc3::Move(const float& deltaTime)
 	}
 }
 
-void npc3::update(const float& deltaTime)
+void npc3::update(const float& deltaTime, bool iswatching)
 {
 	//currentDir = nextDir;
 	waiting += deltaTime;
@@ -72,7 +72,7 @@ void npc3::update(const float& deltaTime)
 	//	return;
 
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
-	if (victory() == false && (Younhee::update(deltaTime)) == false)
+	if (victory() == false && (iswatching == false))
 	{
 		Move(deltaTime);
 	}

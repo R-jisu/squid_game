@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\Audio">
       <UniqueIdentifier>{5a9eb341-c8fe-44da-b245-acd3f24893a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Npc">
+      <UniqueIdentifier>{eda040a3-b36c-4364-b0f9-f09eb984439a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Downloads\ddong_game_c_plus-main\ddong_game_c_plus-main\sfml-audio-d-2.dll">
@@ -73,11 +76,11 @@
     <ClInclude Include="NPC4.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Rendernpc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NPC1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -93,16 +96,22 @@
     <ClCompile Include="Animation\Animator.cpp">
       <Filter>소스 파일\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="NPC4.cpp">
+      <Filter>소스 파일\Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC1.cpp">
+      <Filter>소스 파일\Npc</Filter>
     </ClCompile>
     <ClCompile Include="NPC2.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Npc</Filter>
     </ClCompile>
     <ClCompile Include="NPC3.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Npc</Filter>
     </ClCompile>
-    <ClCompile Include="NPC4.cpp">
+    <ClCompile Include="enemy.cpp">
+      <Filter>소스 파일\Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendernpc.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

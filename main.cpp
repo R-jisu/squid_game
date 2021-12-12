@@ -11,6 +11,7 @@
 #include <Windows.h>
 #include "enemy.h"
 
+
 using namespace sf;
 using namespace std;
 float dying = 0;
@@ -58,9 +59,10 @@ int main()
 	Younhee younghee;
 	
 	std::vector<npc> npcs;
-	for (int num = 0; num < 3; num++)
+	for (int num = 0; num < 10; num++)
 	{
-		npcs.emplace_back(rand() % 500, rand() % 20 + 10);
+		npc p(rand() % 500, rand() % 20 + 10);
+		npcs.push_back(p);
 	}
 
 	//int flag = 1;
@@ -114,14 +116,14 @@ int main()
 			
 
 		Npc1.update(deltaTime, younghee.watching());
-		Npc2.update(deltaTime);
-		Npc3.update(deltaTime);
-		Npc4.update(deltaTime);
-
-		for (auto _e : npcs)
+		Npc2.update(deltaTime, younghee.watching());
+		Npc3.update(deltaTime, younghee.watching());
+		Npc4.update(deltaTime, younghee.watching());
+	
+		for (auto & _e : npcs)
 		{
 			_e.update(deltaTime, younghee.watching());
-			
+			Npc1.animator->Update(deltaTime);
 		}
 		younghee.update(deltaTime);
 		
@@ -132,13 +134,14 @@ int main()
 		younghee.draw(window);
 
 		Npc1.draw(window);
-		Npc1.animator->Update(deltaTime);
+		
 		Npc2.draw(window);
 		Npc3.draw(window);
 		Npc4.draw(window);
-		for (auto _e : npcs)
+		for (auto &_e : npcs)
 		{
 			_e.draw(window);
+			
 			_e.animator->Update(deltaTime);
 		}
 
