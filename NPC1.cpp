@@ -55,7 +55,7 @@ void npc::Move(const float& deltaTime)
 	}
 }
 
-void npc::update(const float& deltaTime)
+void npc::update(const float& deltaTime, bool iswatching)
 {
 	//currentDir = nextDir;
 	waiting += deltaTime;
@@ -70,17 +70,16 @@ void npc::update(const float& deltaTime)
 	//	return;
 
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
-	if (victory() == false && (Younhee::update(deltaTime))==false)
+	if (victory() == false && iswatching ==false)
 	{
+		
 		Move(deltaTime);
+		//animator->Update(deltaTime);
 	}
 	else
 	{
 		NPC.setTexture(&texture1);
 	}
-
-	animator->Update(deltaTime);
-
 }
 
 bool npc::victory()

@@ -12,6 +12,10 @@ Younhee::Younhee()
 	younhee.setPosition(220,5);
 }
 
+bool Younhee::watching()
+{
+	return iswatching;
+}
 
 bool Younhee::update(const float& deltaTime)
 {
@@ -49,7 +53,7 @@ bool Younhee::update(const float& deltaTime)
 		audio.PlaySound(Sounds::Death ,false, VOLUME);
 		watchtimer = 0;
 	}
-
+	
 	return iswatching;
 
 }

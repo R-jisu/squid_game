@@ -25,6 +25,7 @@ public:
 	State state = ready;
 	float watchtimer = 0;
 	Younhee();
+	bool watching();
 	bool update(const float& deltaTime);
 	void draw(RenderWindow& _window);
 };

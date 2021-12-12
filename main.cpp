@@ -56,6 +56,12 @@ int main()
 	npc3 Npc3(rand() % 500, rand() % 20 + 10);
 	npc4 Npc4(rand() % 500, rand() % 20 + 10);
 	Younhee younghee;
+	
+	std::vector<npc> npcs;
+	for (int num = 0; num < 3; num++)
+	{
+		npcs.emplace_back(rand() % 500, rand() % 20 + 10);
+	}
 
 	//int flag = 1;
 
@@ -104,20 +110,38 @@ int main()
 			people.update(deltaTime);
 		}
 
-		Npc1.update(deltaTime);
+		
+			
+
+		Npc1.update(deltaTime, younghee.watching());
 		Npc2.update(deltaTime);
 		Npc3.update(deltaTime);
 		Npc4.update(deltaTime);
 
+		for (auto _e : npcs)
+		{
+			_e.update(deltaTime, younghee.watching());
+			
+		}
 		younghee.update(deltaTime);
-
+		
+		
 		window.clear(Color(255, 255, 255));
+		
 		window.draw(mapSprite);
 		younghee.draw(window);
+
 		Npc1.draw(window);
+		Npc1.animator->Update(deltaTime);
 		Npc2.draw(window);
 		Npc3.draw(window);
 		Npc4.draw(window);
+		for (auto _e : npcs)
+		{
+			_e.draw(window);
+			_e.animator->Update(deltaTime);
+		}
+
 		people.draw(window);
 
 		window.display();
