@@ -5,6 +5,7 @@
 npc::npc(float x, float _speed)
 {
 	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
+	texture2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
 	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 33, 618));
 
 	NPC.setSize(sf::Vector2f(34, 62));
@@ -57,7 +58,6 @@ void npc::Move(const float& deltaTime)
 
 void npc::update(const float& deltaTime, bool iswatching)
 {
-	//currentDir = nextDir;
 	waiting += deltaTime;
 	if (waiting >= 2)
 	{
@@ -65,21 +65,42 @@ void npc::update(const float& deltaTime, bool iswatching)
 		waiting = 0;
 	}
 
+	if (stoptimer >= 3)
+	{
+		randdie = rand() % 4 + 1;
+		cout << randdie << endl;
+		stoptimer = 0;
+	}
+
 	//dying = NPCDie(deltaTime);
-	//if (dying == true)
-	//	return;
+	if (dying == true)
+		return;
 
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
 	if (victory() == false && iswatching ==false)
 	{
-		
 		Move(deltaTime);
-		//animator->Update(deltaTime);
 	}
-	else
+	else if (iswatching == true)
 	{
 		NPC.setTexture(&texture1);
+
+		stoptimer += deltaTime;
+		if (stoptimer >= 3)
+		{
+			randdie = rand() % 5 + 1;
+			stoptimer = 0;
+		}
+
+		if (randdie == 1 && iswatching == true)
+		{
+			cout << "die" << endl;
+			NPC.setTexture(&texture2);
+			dying = true;
+		}
 	}
+	animator->Update(deltaTime);
+
 }
 
 bool npc::victory()

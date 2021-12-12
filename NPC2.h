@@ -16,10 +16,12 @@ private:
 	float waiting = 0;
 	float stoptimer = 0;
 	int isstop = 0;
+	bool dying = false;
 public:
 	sf::RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
+	Texture texture2;
 	int currentDir = 0;
 	npc2(float x, float _speed);
 	void moveLeft();

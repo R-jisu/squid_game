@@ -50,7 +50,7 @@ int main()
 	//{
 	//	std::cout << "texture not loaded correctly" << std::endl;
 	//}
-
+	int start_flag = 1;
 	People people;
 	npc Npc1(rand() % 500, rand() % 20 + 10);
 	npc2 Npc2(rand() % 500, rand() % 20 + 10);
@@ -59,21 +59,15 @@ int main()
 	Younhee younghee;
 	
 	std::vector<npc> npcs;
-	for (int num = 0; num < 10; num++)
+	for (int num = 0; num < 5; num++)
 	{
 		npc p(rand() % 500, rand() % 20 + 10);
 		npcs.push_back(p);
 	}
 
-	//int flag = 1;
-
 	while (window.isOpen())
 	{
-		/*if (flag == 1)
-		{
-			younghee.Soundfun();
-			flag = 0;
-		}*/
+
 		deltaTime = clock.restart().asSeconds();
 		Event event;
 		while (window.pollEvent(event))
@@ -112,19 +106,26 @@ int main()
 			people.update(deltaTime);
 		}
 
-		
-			
-
-		Npc1.update(deltaTime, younghee.watching());
-		Npc2.update(deltaTime, younghee.watching());
-		Npc3.update(deltaTime, younghee.watching());
-		Npc4.update(deltaTime, younghee.watching());
-	
-		for (auto & _e : npcs)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 		{
-			_e.update(deltaTime, younghee.watching());
-			Npc1.animator->Update(deltaTime);
+			start_flag = 0;
 		}
+
+		if (start_flag == 0)
+		{
+			Npc1.update(deltaTime, younghee.watching());
+			Npc2.update(deltaTime, younghee.watching());
+			Npc3.update(deltaTime, younghee.watching());
+			Npc4.update(deltaTime, younghee.watching());
+
+
+			for (auto& _e : npcs)
+			{
+				_e.update(deltaTime, younghee.watching());
+				Npc1.animator->Update(deltaTime);
+			}
+		}
+
 		younghee.update(deltaTime);
 		
 		
@@ -134,7 +135,6 @@ int main()
 		younghee.draw(window);
 
 		Npc1.draw(window);
-		
 		Npc2.draw(window);
 		Npc3.draw(window);
 		Npc4.draw(window);

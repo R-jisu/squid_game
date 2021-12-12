@@ -23,8 +23,10 @@ public:
 	sf::RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
-	//NPCDirection currentDir = nextDir;
+	Texture texture2;
+
 	int currentDir = 1;
+	int randdie = 0;
 	npc(float x, float _speed);
 	bool Die(const float& deltaTime);
 	//bool NPCDie(const float& deltaTime);
