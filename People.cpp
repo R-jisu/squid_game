@@ -6,6 +6,7 @@ People::People()
 {
 	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 35, 124));
 	texture1.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
+	//wintexture.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
 
 	people.setSize(sf::Vector2f(36, 62));
 	people.setTexture(&texture);
@@ -90,6 +91,7 @@ bool People::victory()
 {
 	if (people.getPosition().y <= 100 - 62)
 	{
+
 		return true;
 	}
 	return false;

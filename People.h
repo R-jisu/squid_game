@@ -27,6 +27,7 @@ public:
 	sf::RectangleShape people;
 	Texture texture;
 	Texture texture1;
+	Texture wintexture;
 	Direction nextDir= None;
 	Direction currentDir = nextDir;
 	People();

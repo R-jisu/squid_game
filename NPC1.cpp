@@ -100,7 +100,7 @@ void npc::update(const float& deltaTime, bool iswatching)
 			cout << "die" << endl;
 			dieimagetimer += deltaTime;
 			NPC.setTexture(&texture2);
-			if (dieimagetimer >= 1)
+			if (dieimagetimer >= 0.3)
 			{
 				NPC.setTexture(&texture3);
 				dying = true;
