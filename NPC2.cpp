@@ -81,12 +81,12 @@ void npc2::update(const float& deltaTime, bool iswatching)
 	else if (iswatching == true)
 	{
 		NPC.setTexture(&texture1);
-		currentDir = rand() % 2;
+	/*	currentDir = rand() % 2;
 		if (currentDir != 0)
 		{
 			dying = true;
 			NPC.setTexture(&texture2);
-		}
+		}*/
 	}
 
 	animator->Update(deltaTime);

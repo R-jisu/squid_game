@@ -20,10 +20,13 @@ class People : public Younhee
 {
 private:
 	Animator* animator;
-	Animation* animations[5];//left, right, up, down, death
+	Animation* animations[6];//left, right, up, down, death
+	float stoptime = 0;
+	bool stop = false;
 public:
 	sf::RectangleShape people;
 	Texture texture;
+	Texture texture1;
 	Direction nextDir= None;
 	Direction currentDir = nextDir;
 	People();

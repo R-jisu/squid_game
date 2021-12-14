@@ -19,6 +19,7 @@ float dying = 0;
 int main()
 {
 	sf::Clock clock;
+	float stoptime = 0;
 	float deltaTime = 0;
 
 	sf::RenderWindow window(sf::VideoMode(500, 600), "Pacman");
@@ -37,19 +38,21 @@ int main()
 	{
 		std::cout << "texture not loaded correctly" << std::endl;
 	}
-	//sf::Sprite gameOverTextSprite;
-	//sf::Texture gameOverTextTexture;
 
-	//if (gameOverTextTexture.loadFromFile("Resources/ready-gameover.png", sf::IntRect(0, 0, 175, 22)))
-	//{
-	//	gameOverTextTexture.setSmooth(false);
-	//	gameOverTextSprite.setTexture(gameOverTextTexture);
-	//	gameOverTextSprite.move(310, 438);
-	//}
-	//else
-	//{
-	//	std::cout << "texture not loaded correctly" << std::endl;
-	//}
+	sf::Sprite gameOverTextSprite;
+	sf::Texture gameOverTextTexture;
+
+	if (gameOverTextTexture.loadFromFile("Resources/ready-gameover.png", sf::IntRect(0, 0, 175, 22)))
+	{
+		gameOverTextTexture.setSmooth(false);
+		gameOverTextSprite.setTexture(gameOverTextTexture);
+		gameOverTextSprite.move(0, 0);
+	}
+	else
+	{
+		std::cout << "texture not loaded correctly" << std::endl;
+	}
+
 	int start_flag = 1;
 	People people;
 	npc Npc1(rand() % 500, rand() % 20 + 10);
@@ -59,7 +62,7 @@ int main()
 	Younhee younghee;
 	
 	std::vector<npc> npcs;
-	for (int num = 0; num < 5; num++)
+	for (int num = 0; num < 20; num++)
 	{
 		npc p(rand() % 500, rand() % 20 + 10);
 		npcs.push_back(p);
@@ -67,8 +70,10 @@ int main()
 
 	while (window.isOpen())
 	{
-
 		deltaTime = clock.restart().asSeconds();
+
+		
+
 		Event event;
 		while (window.pollEvent(event))
 		{
@@ -90,14 +95,16 @@ int main()
 			window.close();
 		}
 
-		if (people.Die(deltaTime))
+		if (people.Die(deltaTime)==true)
 		{
 			// 타이머 2초 주고 
 			dying += deltaTime;
+			window.clear();
+			window.draw(gameOverTextSprite);
+
 			//사망
 			if (dying >= 2)
 			{
-				window.clear();
 				window.close();
 			}
 		}

@@ -14,6 +14,7 @@ private:
 	float speed;
 	float waiting = 0;
 	float stoptimer = 0;
+	float dieimagetimer = 0;
 	int isstop = 0;
 	int flag = 0;
 	bool dying = false;
@@ -24,11 +25,12 @@ public:
 	Texture texture;
 	Texture texture1;
 	Texture texture2;
+	Texture texture3;
 
 	int currentDir = 1;
 	int randdie = 0;
 	npc(float x, float _speed);
-	bool Die(const float& deltaTime);
+	//bool Die(const float& deltaTime);
 	//bool NPCDie(const float& deltaTime);
 	void Move(const float& deltaTime);
 	bool victory();

@@ -5,6 +5,7 @@
 People::People()
 {
 	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 35, 124));
+	texture1.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
 
 	people.setSize(sf::Vector2f(36, 62));
 	people.setTexture(&texture);
@@ -17,7 +18,7 @@ People::People()
 
 void People::Move(const float& deltaTime)
 {
-	float dt = 30 * deltaTime;
+	float dt = 20 * deltaTime;
 
 	switch (currentDir)
 	{
@@ -43,6 +44,9 @@ void People::Move(const float& deltaTime)
 
 void People::update(const float& deltaTime)
 {
+	stoptime += deltaTime;
+	if (stoptime >= 180) stop = true;
+
 	FloatRect pos = people.getGlobalBounds();
 	if(victory()==false)
 	{
@@ -93,8 +97,15 @@ bool People::victory()
 
 bool People::Die(const float& deltaTime)
 {
+	if (stop == true)
+	{
+		people.setTexture(&texture1);
+		return true;
+	}
+
 	if ((Younhee::update(deltaTime)) && (currentDir != None))
 	{
+		people.setTexture(&texture1);
 		return true;
 	}
 	else
@@ -139,6 +150,7 @@ void People::SetupAnimations()
 	sf::Texture s1;
 	s1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 33, 124));
 	std::vector<sf::Texture> StopAnimTextures{ s1 };
+
 
 	animations[0] = new Animation(leftAnimTextures);
 	animations[1] = new Animation(rightAnimTextures);
