@@ -9,20 +9,19 @@ npc2::npc2(float y, float _speed)
 	SetupAnimations();
 	animator = new Animator(&NPC);
 	speed = _speed;
-	NPC.setPosition(0,y);
-	animator->SetAnimationClip(animations[2]);
+	NPC.setPosition(0, y);
+	animator->SetAnimationClip(animation[0]);
 }
 
 void npc2::Move(const float& deltaTime)
 {
 	float dt = speed * deltaTime;
-
 	switch (currentDir)
 	{
-	case 0: //stop
+	case 0:
 		NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y);
 		return;
-	case 1: //up
+	case 1:
 		if (NPC.getPosition().y > 150.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
@@ -32,14 +31,13 @@ void npc2::Move(const float& deltaTime)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y + dt);
 		}
-		break;
-	case 2: //¿Þ
+	case 2:
 		if (NPC.getPosition().x > 150.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
 		}
 		break;
-	case 3://´Ù¿î
+	case 3:
 		if (NPC.getPosition().y < 500.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y + dt);
@@ -54,7 +52,6 @@ void npc2::Move(const float& deltaTime)
 }
 
 void npc2::update(const float& deltaTime, bool iswatching)
-	//currentDir = nextDir;
 {
 	waiting += deltaTime;
 	if (waiting >= 2)
@@ -63,7 +60,6 @@ void npc2::update(const float& deltaTime, bool iswatching)
 		waiting = 0;
 	}
 
-	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
 	if (victory() == false && iswatching == false)
 	{
 		Move(deltaTime);
@@ -90,20 +86,17 @@ bool npc2::victory()
 	return false;
 }
 
-
 void npc2::SetupAnimations()
 {
-	//up animation
 	sf::Texture r1, r2, r3;
 	r1.loadFromFile("Resources/npc2.png", sf::IntRect(0, 0, 34, 62));
 	r2.loadFromFile("Resources/npc2.png", sf::IntRect(0, 62, 34, 62));
 	r3.loadFromFile("Resources/npc2.png", sf::IntRect(0, 124, 34, 62));
 	std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
-	animations[2] = new Animation(rightAnimTextures);
+	animation[0] = new Animation(rightAnimTextures);
 }
 
 void npc2::draw(RenderWindow& _window)
 {
 	_window.draw(NPC);
 }
-

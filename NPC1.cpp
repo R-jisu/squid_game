@@ -1,4 +1,5 @@
 #include "NPC1.h"
+
 npc::npc(float y, float _speed)
 {
 	texture.loadFromFile("Resources/npc3.png", sf::IntRect(0, 0, 34, 62));
@@ -11,36 +12,34 @@ npc::npc(float y, float _speed)
 	animator = new Animator(&NPC);
 	speed = _speed;
 	NPC.setPosition(0, y);
-	animator->SetAnimationClip(animations[2]);
+	animator->SetAnimationClip(animation[0]);
 }
 
 void npc::Move(const float& deltaTime)
 {
 	float dt = speed * deltaTime;
-
 	switch (currentDir)
 	{
-	case 0: //stop
+	case 0:
 		NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y);
 		return;
-	case 1: //up
+	case 1:
 		if (NPC.getPosition().y > 150.0f)
 		{
-			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
+			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y-dt);
+			NPC.setPosition(NPC.getPosition().x+dt, NPC.getPosition().y);
 		}
 		else
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y + dt);
 		}
-		break;
-	case 2: //¿Þ
+	case 2:
 		if (NPC.getPosition().x > 150.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
 		}
 		break;
-	case 3://´Ù¿î
+	case 3:
 		if (NPC.getPosition().y < 500.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y + dt);
@@ -63,26 +62,16 @@ void npc::update(const float& deltaTime, bool iswatching)
 		waiting = 0;
 	}
 
-	if (stoptimer >= 3)
-	{
-		randdie = rand() % 4 + 1;
-		stoptimer = 0;
-	}
-
 	if (dying == true)
-	{
 		return;
-	}
 
-	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
-	if (victory() == false && iswatching ==false)
+	if (victory() == false && iswatching == false)
 	{
 		Move(deltaTime);
 	}
 	else if (iswatching == true && victory() == false)
 	{
 		NPC.setTexture(&texture1);
-
 		stoptimer += deltaTime;
 		if (stoptimer >= 3)
 		{
@@ -105,12 +94,11 @@ void npc::update(const float& deltaTime, bool iswatching)
 	}
 	else if (victory() == true)
 	{
-		NPC.setFillColor(sf::Color(0,0,0,0));
+		NPC.setFillColor(sf::Color(0, 0, 0, 0));
 		return;
 	}
 
 	animator->Update(deltaTime);
-
 }
 
 bool npc::victory()
@@ -129,12 +117,10 @@ void npc::SetupAnimations()
 	r2.loadFromFile("Resources/npc3.png", sf::IntRect(0, 62, 34, 62));
 	r3.loadFromFile("Resources/npc3.png", sf::IntRect(0, 124, 34, 62));
 	std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
-	animations[2] = new Animation(rightAnimTextures);
+	animation[0] = new Animation(rightAnimTextures);
 }
-
 
 void npc::draw(RenderWindow& _window)
 {
 	_window.draw(NPC);
 }
-

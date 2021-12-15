@@ -105,8 +105,6 @@ int main()
 			leftime = people.update(deltaTime);
 		}
 
-
-		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 		if (leftime >=7)
 		{
 			start_flag = 0;
@@ -129,11 +127,18 @@ int main()
 		window.draw(mapSprite);
 
 		younghee.draw(window);
+
 		Npc1.draw(window);
 		Npc2.draw(window);
 		Npc3.draw(window);
 		Npc4.draw(window);
 		Npc5.draw(window);
+
+		if (leftime >= 80)
+		{
+			window.draw(mapSprite);
+			younghee.draw(window);
+		}
 
 		people.draw(window);
 

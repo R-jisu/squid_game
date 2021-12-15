@@ -3,16 +3,15 @@
 
 People::People()
 {
-	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0,0,34,62));
-	texture1.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
+	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 0, 34, 62));
+	texture1.loadFromFile("Resources/characterdie.png", sf::IntRect(0, 0, 34, 62));
 
 	people.setSize(sf::Vector2f(36, 62));
 	people.setTexture(&texture);
 	SetupAnimations();
 	animator = new Animator(&people);
-	
-	people.setPosition(0, 300.0f);
 
+	people.setPosition(0, 300.0f);
 }
 
 void People::Move(const float& deltaTime)
@@ -25,16 +24,18 @@ void People::Move(const float& deltaTime)
 		people.setPosition(people.getPosition().x, people.getPosition().y);
 		return;
 	case Up:
-			people.setPosition(people.getPosition().x, people.getPosition().y - dt);
+		people.setPosition(people.getPosition().x, people.getPosition().y-dt);
+		break;
+	case Left:
+		people.setPosition(people.getPosition().x - dt, people.getPosition().y);
+		break;
+	case Right:
+		people.setPosition(people.getPosition().x + dt, people.getPosition().y);
 		break;
 	case Down:
 		people.setPosition(people.getPosition().x, people.getPosition().y + dt);
 		break;
-	case Left:
-			people.setPosition(people.getPosition().x - dt, people.getPosition().y);
-		break;
-	case Right:
-			people.setPosition(people.getPosition().x + dt, people.getPosition().y);
+	default:
 		break;
 	}
 }
@@ -44,39 +45,35 @@ float People::update(const float& deltaTime)
 	stoptime += deltaTime;
 	if (stoptime >= 80) stop = true;
 
-	FloatRect pos = people.getGlobalBounds();
-	if(victory()==false)
+	if (victory() == false)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 		{
 			nextDir = Up;
-			animator->SetAnimationClip(animations[2]);
+			animator->SetAnimationClip(animation[2]);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 		{
 			nextDir = Down;
-			animator->SetAnimationClip(animations[3]);
+			animator->SetAnimationClip(animation[3]);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 		{
 			nextDir = Left;
-			animator->SetAnimationClip(animations[0]);
+			animator->SetAnimationClip(animation[0]);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 		{
 			nextDir = Right;
-			animator->SetAnimationClip(animations[1]);
-
+			animator->SetAnimationClip(animation[1]);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 		{
 			nextDir = None;
-			animator->SetAnimationClip(animations[4]);
-
-		}	
+			animator->SetAnimationClip(animation[4]);
+		}
 		currentDir = nextDir;
 		Move(deltaTime);
-
 	}
 	animator->Update(deltaTime);
 	return stoptime;
@@ -89,6 +86,7 @@ bool People::victory()
 		currentDir = None;
 		return true;
 	}
+
 	return false;
 }
 
@@ -96,29 +94,31 @@ bool People::Die(const float& deltaTime)
 {
 	if (stop == true)
 	{
-		if(flag == false)
-			audio.PlaySound(Sounds::Gun, false, VOLUME);
-		flag = true;
-		people.setTexture(&texture1);
-		return true;
-	}
-
-	if ((Younghee::update(deltaTime)) && (currentDir != None))
-	{
 		if (flag == false)
 			audio.PlaySound(Sounds::Gun, false, VOLUME);
 		flag = true;
 		people.setTexture(&texture1);
 		return true;
 	}
+
+	if (Younghee::update(deltaTime) && (currentDir != None))
+	{
+		if(flag == false)
+			audio.PlaySound(Sounds::Gun, false, VOLUME);
+		flag = true;
+		people.setTexture(&texture1);
+		return true;
+	}
 	else
+	{
 		return false;
+	}
 }
 
 void People::SetupAnimations()
 {
 	//right animation
-	sf::Texture r1, r2,r3;
+	sf::Texture r1, r2, r3;
 	r1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 0, 34, 62));
 	r2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
 	r3.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 124, 34, 62));
@@ -150,16 +150,15 @@ void People::SetupAnimations()
 	s1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
 	std::vector<sf::Texture> StopAnimTextures{ s1 };
 
-
-	animations[0] = new Animation(leftAnimTextures);
-	animations[1] = new Animation(rightAnimTextures);
-	animations[2] = new Animation(upAnimTextures);
-	animations[3] = new Animation(downAnimTextures);
-	animations[4] = new Animation(StopAnimTextures);
+	animation[0] = new Animation(leftAnimTextures);
+	animation[1] = new Animation(rightAnimTextures);
+	animation[2] = new Animation(upAnimTextures);
+	animation[3] = new Animation(downAnimTextures);
+	animation[4] = new Animation(StopAnimTextures);
+	
 }
 
 void People::draw(RenderWindow& _window)
 {
 	_window.draw(people);
 }
-

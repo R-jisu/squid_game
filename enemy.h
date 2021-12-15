@@ -15,7 +15,7 @@ class Younghee {
 private:
 	int flag = 1;
 	AudioManager audio;
-	sf::RectangleShape younhee;
+	RectangleShape younghee;
 	Texture texture_front;
 	Texture texture_back;
 	bool iswatching = false;

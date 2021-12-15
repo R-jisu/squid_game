@@ -19,17 +19,16 @@ class People : public Younghee
 private:
 	AudioManager audio;
 	Animator* animator;
-	Animation* animations[6];//left, right, up, down, death
+	Animation* animation[5];
 	float stoptime = 0;
 	bool stop = false;
 	bool flag = false;
 public:
-	sf::RectangleShape people;
+	RectangleShape people;
 	Texture texture;
 	Texture texture1;
-	Texture wintexture;
-	enum Direction nextDir= None;
-	Direction currentDir = nextDir;
+	enum Direction nextDir = None;
+	enum Direction currentDir = nextDir;
 	People();
 	void Move(const float& deltaTime);
 	bool Die(const float& deltaTime);

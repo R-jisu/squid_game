@@ -10,16 +10,15 @@ class npc : public Younghee
 {
 private:
 	float speed;
-	float waiting = 0; 
-	float stoptimer = 0; 
-	float dieimagetimer = 0; 
-	float animetimer = 0;
+	float waiting = 0;
+	float stoptimer = 0;
+	float dieimagetimer = 0;
 	bool dying = false;
 	AudioManager audio;
 public:
 	Animator* animator;
-	Animation* animations[5];//left, right, up, down, death
-	sf::RectangleShape NPC;
+	Animation* animation[1];
+	RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
 	Texture texture3;

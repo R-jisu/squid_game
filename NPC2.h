@@ -9,14 +9,13 @@ using namespace sf;
 class npc2 : public Younghee
 {
 private:
-
 	float speed;
 	float waiting = 0;
 	AudioManager audio;
 public:
 	Animator* animator;
-	Animation* animations[5];//left, right, up, down, death
-	sf::RectangleShape NPC;
+	Animation* animation[1];
+	RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
 
