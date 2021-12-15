@@ -4,7 +4,7 @@
 
 People::People()
 {
-	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 35, 124));
+	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
 	texture1.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
 	//wintexture.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
 
@@ -119,8 +119,8 @@ void People::SetupAnimations()
 	//right animation
 	sf::Texture r1, r2;
 	//sf::Texture r1, r2,r3;
-	r1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 0, 33, 61));
-	r2.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 0, 67, 61));
+	r1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 0, 34, 62));
+	r2.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 0, 34, 62));
 	//r3.loadFromFile("Resources/maincharacter.png", sf::IntRect(262, 1, 13, 13));
 	//std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
 	std::vector<sf::Texture> rightAnimTextures{ r1,r2};
@@ -128,17 +128,17 @@ void People::SetupAnimations()
 	//left animation
 	//sf::Texture l1, l2, l3;
 	sf::Texture l1, l2;
-	l1.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 1, 103, 62));
-	l2.loadFromFile("Resources/maincharacter.png", sf::IntRect(104, 1, 136, 62));
+	l1.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 1, 34, 62));
+	l2.loadFromFile("Resources/maincharacter.png", sf::IntRect(104, 1, 34, 62));
 	//l3.loadFromFile("Resources/maincharacter.png", sf::IntRect(262, 17, 13, 13));
 	//std::vector<sf::Texture> leftAnimTextures{ l1,l2,l3 };
 	std::vector<sf::Texture> leftAnimTextures{ l1,l2};
 
 	//up animation
 	sf::Texture u1, u2, u3;
-	u1.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 62, 68, 124));
-	u2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 33, 124));
-	u3.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 62, 103, 124));
+	u1.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 62, 34, 62));
+	u2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
+	u3.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 62, 34, 62));
 	std::vector<sf::Texture> upAnimTextures{ u1,u2,u3 };
 
 	//down animation
@@ -150,7 +150,7 @@ void People::SetupAnimations()
 
 	//stop animation
 	sf::Texture s1;
-	s1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 33, 124));
+	s1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
 	std::vector<sf::Texture> StopAnimTextures{ s1 };
 
 

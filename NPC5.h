@@ -7,14 +7,18 @@
 
 using namespace sf;
 
-class npc2 : public Younhee
+class npc5 : public Younhee
 {
 private:
 
 	float speed;
 	float waiting = 0;
+	float stoptimer = 0;
+	float dieimagetimer = 0;
+	float animetimer = 0;
 	int isstop = 0;
 	int flag = 0;
+	bool dying = false;
 public:
 	Animator* animator;
 	Animation* animations[5];//left, right, up, down, death
@@ -26,7 +30,7 @@ public:
 
 	int currentDir = 1;
 	int randdie = 0;
-	npc2(float x, float _speed);
+	npc5(float x, float _speed);
 	void Move(const float& deltaTime);
 	bool victory();
 	void update(const float& deltaTime, bool iswatching);

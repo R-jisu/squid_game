@@ -3,9 +3,10 @@
 #include <random>
 npc3::npc3(float x, float _speed)
 {
-	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
-	texture2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
-	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 33, 618));
+	texture.loadFromFile("Resources/npc3.png", sf::IntRect(0, 682, 34, 62));
+	texture2.loadFromFile("Resources/npc3.png", sf::IntRect(0, 682, 34, 62));
+	texture1.loadFromFile("Resources/npc3.png", sf::IntRect(0, 560, 34, 62));
+	texture3.loadFromFile("Resources/characterdie.png", sf::IntRect(35, 0, 34, 62));
 
 	NPC.setSize(sf::Vector2f(34, 62));
 	NPC.setTexture(&texture);
@@ -60,7 +61,6 @@ void npc3::Move(const float& deltaTime)
 
 void npc3::update(const float& deltaTime, bool iswatching)
 {
-	//currentDir = nextDir;
 	waiting += deltaTime;
 	if (waiting >= 2)
 	{
@@ -68,28 +68,54 @@ void npc3::update(const float& deltaTime, bool iswatching)
 		waiting = 0;
 	}
 
-	//dying = NPCDie(deltaTime);
+	if (stoptimer >= 3)
+	{
+		randdie = rand() % 4 + 1;
+		cout << randdie << endl;
+		stoptimer = 0;
+	}
+
 	if (dying == true)
+	{
 		return;
+	}
 
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
 	if (victory() == false && iswatching == false)
 	{
-
 		Move(deltaTime);
 	}
-	else if (iswatching == true)
+	else if (iswatching == true && victory() == false)
 	{
 		NPC.setTexture(&texture1);
-		/*currentDir = rand()%2;
-		if (currentDir != 0)
+
+		stoptimer += deltaTime;
+		if (stoptimer >= 3)
 		{
-			dying = true;
+			randdie = rand() % 8 + 1;
+			stoptimer = 0;
+		}
+
+		if (randdie == 1 && iswatching == true)
+		{
+			dieimagetimer += deltaTime;
 			NPC.setTexture(&texture2);
-		}*/
+			if (dieimagetimer >= 0.3)
+			{
+				NPC.setTexture(&texture3);
+				dying = true;
+				dieimagetimer = 0;
+			}
+		}
+	}
+	else if (victory() == true)
+	{
+		NPC.setFillColor(sf::Color(0, 0, 0, 0));
+		return;
 	}
 
 	animator->Update(deltaTime);
+
 }
 
 bool npc3::victory()
@@ -121,9 +147,9 @@ void npc3::SetupAnimations()
 
 	//up animation
 	sf::Texture u1, u2, u3;
-	u1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 620, 33, 681));
-	u2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
-	u3.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 33, 618));
+	u1.loadFromFile("Resources/npc3.png", sf::IntRect(0, 620, 34, 62));
+	u2.loadFromFile("Resources/npc3.png", sf::IntRect(0, 682, 34, 62));
+	u3.loadFromFile("Resources/npc3.png", sf::IntRect(0, 560, 34, 62));
 	std::vector<sf::Texture> upAnimTextures{ u1,u2,u3 };
 
 	////down animation

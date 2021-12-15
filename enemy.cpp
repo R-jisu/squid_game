@@ -4,8 +4,8 @@
 
 Younhee::Younhee()
 {
-	texture_front.loadFromFile("Resources/0HE.png", sf::IntRect(0, 0, 39, 95));
-	texture_back.loadFromFile("Resources/0HE.png", sf::IntRect(40, 0, 80, 95));
+	texture_front.loadFromFile("Resources/0HE.png", sf::IntRect(0, 0, 40, 95));
+	texture_back.loadFromFile("Resources/0HE.png", sf::IntRect(40, 0, 40, 95));
 
 	younhee.setTexture(&texture_back);
 	younhee.setSize(sf::Vector2f(40, 95));

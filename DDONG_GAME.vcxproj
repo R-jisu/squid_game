@@ -162,6 +162,7 @@
     <ClInclude Include="NPC4.h" />
     <ClInclude Include="People.h" />
     <ClInclude Include="Rendernpc.h" />
+    <ClInclude Include="NPC5.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="NPC4.cpp" />
     <ClCompile Include="NPC1.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NPC5.cpp" />
     <ClCompile Include="People.cpp" />
     <ClCompile Include="NPC3.cpp" />
     <ClCompile Include="Rendernpc.cpp" />

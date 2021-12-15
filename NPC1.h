@@ -15,6 +15,7 @@ private:
 	float waiting = 0;
 	float stoptimer = 0;
 	float dieimagetimer = 0;
+	float animetimer = 0;
 	int isstop = 0;
 	int flag = 0;
 	bool dying = false;
@@ -26,6 +27,8 @@ public:
 	Texture texture1;
 	Texture texture2;
 	Texture texture3;
+
+	void ChangeAnimation();
 
 	int currentDir = 1;
 	int randdie = 0;

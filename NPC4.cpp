@@ -3,9 +3,9 @@
 #include <random>
 npc4::npc4(float x, float _speed)
 {
-	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
-	texture2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 744));
-	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 33, 618));
+	texture.loadFromFile("Resources/npc4.png", sf::IntRect(0, 682, 34, 62));
+	texture2.loadFromFile("Resources/npc4.png", sf::IntRect(0, 682, 34, 62));
+	texture1.loadFromFile("Resources/npc4.png", sf::IntRect(0, 560, 33, 62));
 	NPC.setSize(sf::Vector2f(34, 62));
 	NPC.setTexture(&texture);
 	SetupAnimations();
@@ -29,7 +29,6 @@ void npc4::Move(const float& deltaTime)
 		if (NPC.getPosition().y > 0.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			//animator->SetAnimationClip(animations[2]);
 		}
 		break;
 	case 2: //¿Þ
@@ -67,25 +66,20 @@ void npc4::update(const float& deltaTime, bool iswatching)
 		waiting = 0;
 	}
 
-	//dying = NPCDie(deltaTime);
-	if (dying == true)
-		return;
-
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
 	if (victory() == false && iswatching == false)
 	{
 
 		Move(deltaTime);
 	}
-	else if (iswatching == true)
+	else if (iswatching == true && victory() == false)
 	{
 		NPC.setTexture(&texture1);
-		currentDir = rand() % 2;
-	/*	if (currentDir != 0)
-		{
-			dying = true;
-			NPC.setTexture(&texture2);
-		}*/
+	}
+	else if (victory() == true)
+	{
+		NPC.setFillColor(sf::Color(0, 0, 0, 0));
+		return;
 	}
 
 	animator->Update(deltaTime);
@@ -119,9 +113,9 @@ void npc4::SetupAnimations()
 
 	//up animation
 	sf::Texture u1, u2, u3;
-	u1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 620, 33, 681));
-	u2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 33, 744));
-	u3.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 33, 618));
+	u1.loadFromFile("Resources/npc4.png", sf::IntRect(0, 620, 34, 62));
+	u2.loadFromFile("Resources/npc4.png", sf::IntRect(0, 682, 34, 62));
+	u3.loadFromFile("Resources/npc4.png", sf::IntRect(0, 560, 34, 62));
 	std::vector<sf::Texture> upAnimTextures{ u1,u2,u3 };
 
 	////down animation

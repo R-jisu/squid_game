@@ -1,8 +1,8 @@
-#include "NPC1.h"
+#include "NPC5.h"
 #include <iostream>
 #include <random>
 
-npc::npc(float x, float _speed)
+npc5::npc5(float x, float _speed)
 {
 	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 62));
 	texture2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 62));
@@ -18,7 +18,7 @@ npc::npc(float x, float _speed)
 	animator->SetAnimationClip(animations[2]);
 }
 
-void npc::Move(const float& deltaTime)
+void npc5::Move(const float& deltaTime)
 {
 	float dt = speed * deltaTime;
 
@@ -26,13 +26,11 @@ void npc::Move(const float& deltaTime)
 	{
 	case 0: //stop
 		NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y);
-		ChangeAnimation();
 		return;
 	case 1: //up
 		if (NPC.getPosition().y > 0.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			ChangeAnimation();
 		}
 		break;
 	case 2: //¿Þ
@@ -40,33 +38,28 @@ void npc::Move(const float& deltaTime)
 		{
 			NPC.setPosition(NPC.getPosition().x - dt, NPC.getPosition().y);
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			ChangeAnimation();
 		}
 		else
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
-			ChangeAnimation();
 		break;
 	case 3://¿À¸¥
 		if (NPC.getPosition().x < 450.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			ChangeAnimation();
 		}
 		else
 			NPC.setPosition(NPC.getPosition().x - dt, NPC.getPosition().y);
-			ChangeAnimation();
 		break;
 	}
 }
 
-void npc::update(const float& deltaTime, bool iswatching)
+void npc5::update(const float& deltaTime, bool iswatching)
 {
 	waiting += deltaTime;
 	if (waiting >= 2)
 	{
 		currentDir = rand() % 4;
-		ChangeAnimation();
 		waiting = 0;
 	}
 
@@ -83,7 +76,7 @@ void npc::update(const float& deltaTime, bool iswatching)
 	}
 
 	// npc´Â ¼±À» ³ÑÀ¸¸é ¸ØÃá´Ù
-	if (victory() == false && iswatching ==false)
+	if (victory() == false && iswatching == false)
 	{
 		Move(deltaTime);
 	}
@@ -113,7 +106,7 @@ void npc::update(const float& deltaTime, bool iswatching)
 	}
 	else if (victory() == true)
 	{
-		NPC.setFillColor(sf::Color(0,0,0,0));
+		NPC.setFillColor(sf::Color(0, 0, 0, 0));
 		return;
 	}
 
@@ -121,7 +114,7 @@ void npc::update(const float& deltaTime, bool iswatching)
 
 }
 
-bool npc::victory()
+bool npc5::victory()
 {
 	if (NPC.getPosition().y <= 100 - 55)
 	{
@@ -130,17 +123,7 @@ bool npc::victory()
 	return false;
 }
 
-//bool npc::NPCDie(const float& deltaTime)
-//{
-//	if ((Younhee::update(deltaTime)) && (currentDir != 0))
-//	{
-//		dying = true;
-//		return dying;
-//	}
-//	
-//}
-
-void npc::SetupAnimations()
+void npc5::SetupAnimations()
 {
 	////right animation
 	//sf::Texture r1, r2,r3;
@@ -182,28 +165,7 @@ void npc::SetupAnimations()
 	animations[4] = new Animation(StopAnimTextures, false, 0.20f);
 }
 
-void npc::ChangeAnimation()
-{
-		switch (currentDir)
-		{
-		case 0:
-			animator->SetAnimationClip(animations[4]);
-		case 2:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		case 3:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		case 1:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		case 4:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		}
-}
-
-void npc::draw(RenderWindow& _window)
+void npc5::draw(RenderWindow& _window)
 {
 	_window.draw(NPC);
 }

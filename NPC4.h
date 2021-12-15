@@ -14,8 +14,6 @@ private:
 	Animation* animations[5];//left, right, up, down, death
 	float speed;
 	float waiting = 0;
-	float stoptimer = 0;
-	int isstop = 0;
 	bool dying = false;
 public:
 	sf::RectangleShape NPC;

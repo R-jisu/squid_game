@@ -79,6 +79,9 @@
     <ClInclude Include="Rendernpc.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="NPC5.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="Rendernpc.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC5.cpp">
+      <Filter>소스 파일\Npc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

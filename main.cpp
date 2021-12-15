@@ -8,6 +8,7 @@
 #include "NPC2.h"
 #include "NPC3.h"
 #include "NPC4.h"
+#include "NPC5.h"
 #include <Windows.h>
 #include "enemy.h"
 
@@ -22,7 +23,7 @@ int main()
 	float stoptime = 0;
 	float deltaTime = 0;
 
-	sf::RenderWindow window(sf::VideoMode(500, 600), "Pacman");
+	sf::RenderWindow window(sf::VideoMode(500, 600), "Squid_Game");
 
 	sf::Sprite mapSprite;
 	sf::Texture mapTexture;
@@ -42,16 +43,16 @@ int main()
 	sf::Sprite gameOverTextSprite;
 	sf::Texture gameOverTextTexture;
 
-	if (gameOverTextTexture.loadFromFile("Resources/ready-gameover.png", sf::IntRect(0, 0, 175, 22)))
-	{
-		gameOverTextTexture.setSmooth(false);
-		gameOverTextSprite.setTexture(gameOverTextTexture);
-		gameOverTextSprite.move(0, 0);
-	}
-	else
-	{
-		std::cout << "texture not loaded correctly" << std::endl;
-	}
+	//if (gameOverTextTexture.loadFromFile("Resources/ready-gameover.png", sf::IntRect(0, 0, 175, 22)))
+	//{
+	//	gameOverTextTexture.setSmooth(false);
+	//	gameOverTextSprite.setTexture(gameOverTextTexture);
+	//	gameOverTextSprite.move(0, 0);
+	//}
+	//else
+	//{
+	//	std::cout << "texture not loaded correctly" << std::endl;
+	//}
 
 	int start_flag = 1;
 	People people;
@@ -59,20 +60,12 @@ int main()
 	npc2 Npc2(rand() % 500, rand() % 20 + 10);
 	npc3 Npc3(rand() % 500, rand() % 20 + 10);
 	npc4 Npc4(rand() % 500, rand() % 20 + 10);
+	npc5 Npc5(rand() % 500, rand() % 20 + 10);
 	Younhee younghee;
 	
-	std::vector<npc> npcs;
-	for (int num = 0; num < 20; num++)
-	{
-		npc p(rand() % 500, rand() % 20 + 10);
-		npcs.push_back(p);
-	}
-
 	while (window.isOpen())
 	{
 		deltaTime = clock.restart().asSeconds();
-
-		
 
 		Event event;
 		while (window.pollEvent(event))
@@ -95,6 +88,7 @@ int main()
 			window.close();
 		}
 
+
 		if (people.Die(deltaTime)==true)
 		{
 			// 타이머 2초 주고 
@@ -113,6 +107,7 @@ int main()
 			people.update(deltaTime);
 		}
 
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 		{
 			start_flag = 0;
@@ -124,13 +119,8 @@ int main()
 			Npc2.update(deltaTime, younghee.watching());
 			Npc3.update(deltaTime, younghee.watching());
 			Npc4.update(deltaTime, younghee.watching());
+			Npc5.update(deltaTime, younghee.watching());
 
-
-			for (auto& _e : npcs)
-			{
-				_e.update(deltaTime, younghee.watching());
-				Npc1.animator->Update(deltaTime);
-			}
 		}
 
 		younghee.update(deltaTime);
@@ -145,12 +135,7 @@ int main()
 		Npc2.draw(window);
 		Npc3.draw(window);
 		Npc4.draw(window);
-		for (auto &_e : npcs)
-		{
-			_e.draw(window);
-			
-			_e.animator->Update(deltaTime);
-		}
+		Npc5.draw(window);
 
 		people.draw(window);
 
