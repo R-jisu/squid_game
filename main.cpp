@@ -1,7 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "SFML/Audio.hpp"
-#include <string>
-#include <iostream>
 #include "People.h"
 #include "Common.h"
 #include "NPC1.h"
@@ -20,17 +18,33 @@ float dying = 0;
 
 int main()
 {
+	Font font;
+	font.loadFromFile("Resources/arial.ttf");
+
+	Text text;
+	text.setFont(font);
+	text.setFillColor(Color::Black);
+	text.setPosition(0.0f, 0.0f);
+	text.setCharacterSize(15);
+
+	Text text1;
+	text1.setFont(font);
+	text1.setFillColor(Color::Black);
+	text1.setPosition(200, 300);
+	text1.setCharacterSize(100);
+	int leftime;
+
+	srand((unsigned)time(NULL));
+
 	sf::Clock clock;
 	float stoptime = 0;
 	float deltaTime = 0;
 
-	sf::RenderWindow window(sf::VideoMode(500, 600), "Squid_Game");
-
+	sf::RenderWindow window(sf::VideoMode(600, 600), "Squid_Game");
 	sf::Sprite mapSprite;
 	sf::Texture mapTexture;
 
-
-	if (mapTexture.loadFromFile("Resources/background.png", sf::IntRect(0, 0, 500, 600)))
+	if (mapTexture.loadFromFile("Resources/background1.png", sf::IntRect(0, 0, 600, 600)))
 	{
 		mapTexture.setSmooth(false);
 		mapSprite.setTexture(mapTexture);
@@ -44,24 +58,13 @@ int main()
 	sf::Sprite gameOverTextSprite;
 	sf::Texture gameOverTextTexture;
 
-	//if (gameOverTextTexture.loadFromFile("Resources/ready-gameover.png", sf::IntRect(0, 0, 175, 22)))
-	//{
-	//	gameOverTextTexture.setSmooth(false);
-	//	gameOverTextSprite.setTexture(gameOverTextTexture);
-	//	gameOverTextSprite.move(0, 0);
-	//}
-	//else
-	//{
-	//	std::cout << "texture not loaded correctly" << std::endl;
-	//}
-
 	int start_flag = 1;
 	People people;
-	npc Npc1(rand() % 500, rand() % 20 + 10);
-	npc2 Npc2(rand() % 500, rand() % 20 + 10);
-	npc3 Npc3(rand() % 500, rand() % 20 + 10);
-	npc4 Npc4(rand() % 500, rand() % 20 + 10);
-	npc5 Npc5(rand() % 500, rand() % 20 + 10);
+	npc Npc1(110, rand() % 20 + 10);
+	npc2 Npc2(160, rand() % 20 + 10);
+	npc3 Npc3(200, rand() % 20 + 10);
+	npc4 Npc4(380, rand() % 20 + 10);
+	npc5 Npc5(500, rand() % 20 + 10);
 	Younhee younghee;
 	
 	while (window.isOpen())
@@ -84,9 +87,11 @@ int main()
 		if (people.victory())
 		{
 			//½Â¸®
-			window.clear();
-			//window.draw(victorySprite);
-			window.close();
+			stoptime += deltaTime;
+			if (stoptime >= 2)
+			{
+				window.close();
+			}
 		}
 
 
@@ -94,9 +99,6 @@ int main()
 		{
 			// Å¸ÀÌ¸Ó 2ÃÊ ÁÖ°í 
 			dying += deltaTime;
-			window.clear();
-			window.draw(gameOverTextSprite);
-
 			//»ç¸Á
 			if (dying >= 2)
 			{
@@ -105,11 +107,11 @@ int main()
 		}
 		else
 		{
-			people.update(deltaTime);
+			leftime = people.update(deltaTime);
 		}
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 		{
 			start_flag = 0;
 		}
@@ -128,10 +130,9 @@ int main()
 		
 		
 		window.clear(Color(255, 255, 255));
-		
 		window.draw(mapSprite);
-		younghee.draw(window);
 
+		younghee.draw(window);
 		Npc1.draw(window);
 		Npc2.draw(window);
 		Npc3.draw(window);
@@ -140,6 +141,8 @@ int main()
 
 		people.draw(window);
 
+		text.setString(to_string(leftime));
+		window.draw(text);
 		window.display();
 	}
 

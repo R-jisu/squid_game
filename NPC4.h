@@ -21,14 +21,9 @@ public:
 	sf::RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
-	Texture texture2;
 
 	int currentDir = 0;
-	npc4(float x, float _speed);
-	void moveLeft();
-	void moveRight();
-	void moveUp();
-	void moveDown();
+	npc4(float y, float _speed);
 	void Move(const float& deltaTime);
 	bool victory();
 	void update(const float& deltaTime, bool iswatching);

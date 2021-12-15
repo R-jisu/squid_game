@@ -4,3 +4,5 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <stack>
+#include <time.h> 
+#include <string>

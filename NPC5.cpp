@@ -2,11 +2,10 @@
 #include <iostream>
 #include <random>
 
-npc5::npc5(float x, float _speed)
+npc5::npc5(float y, float _speed)
 {
-	texture.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 62));
-	texture2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 62));
-	texture1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 34, 62));
+	texture.loadFromFile("Resources/npc3.png", sf::IntRect(0, 0, 34, 62));
+	texture1.loadFromFile("Resources/npc3.png", sf::IntRect(0, 62, 34, 62));
 	texture3.loadFromFile("Resources/characterdie.png", sf::IntRect(35, 0, 34, 62));
 
 	NPC.setSize(sf::Vector2f(34, 62));
@@ -14,7 +13,7 @@ npc5::npc5(float x, float _speed)
 	SetupAnimations();
 	animator = new Animator(&NPC);
 	speed = _speed;
-	NPC.setPosition(x, 600.0f - 60.0f);
+	NPC.setPosition(0,y);
 	animator->SetAnimationClip(animations[2]);
 }
 
@@ -28,28 +27,32 @@ void npc5::Move(const float& deltaTime)
 		NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y);
 		return;
 	case 1: //up
-		if (NPC.getPosition().y > 0.0f)
+		if (NPC.getPosition().y > 150.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
+			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
+		}
+		else
+		{
+			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y + dt);
 		}
 		break;
 	case 2: //¿Þ
 		if (NPC.getPosition().x > 150.0f)
 		{
-			NPC.setPosition(NPC.getPosition().x - dt, NPC.getPosition().y);
-			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-		}
-		else
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
+		}
 		break;
-	case 3://¿À¸¥
-		if (NPC.getPosition().x < 450.0f)
+	case 3://´Ù¿î
+		if (NPC.getPosition().y < 500.0f)
 		{
+			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y + dt);
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
-			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
 		}
 		else
-			NPC.setPosition(NPC.getPosition().x - dt, NPC.getPosition().y);
+		{
+			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
+		}
 		break;
 	}
 }
@@ -93,9 +96,8 @@ void npc5::update(const float& deltaTime, bool iswatching)
 
 		if (randdie == 1 && iswatching == true)
 		{
-			cout << "die" << endl;
 			dieimagetimer += deltaTime;
-			NPC.setTexture(&texture2);
+			NPC.setTexture(&texture);
 			if (dieimagetimer >= 0.3)
 			{
 				audio.PlaySound(Sounds::Gun, false, VOLUME);
@@ -117,7 +119,7 @@ void npc5::update(const float& deltaTime, bool iswatching)
 
 bool npc5::victory()
 {
-	if (NPC.getPosition().y <= 100 - 55)
+	if (NPC.getPosition().x >= 500)
 	{
 		return true;
 	}
@@ -126,44 +128,13 @@ bool npc5::victory()
 
 void npc5::SetupAnimations()
 {
-	////right animation
-	//sf::Texture r1, r2,r3;
-	//r1.loadFromFile("Resources/npc.png", sf::IntRect(0, 0, 33, 61));
-	//r2.loadFromFile("Resources/npc.png", sf::IntRect(34, 0, 67, 61));
-	//r3.loadFromFile("Resources/npc.png", sf::IntRect(262, 1, 13, 13));
-	//std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
-
-	////left animation
-	//sf::Texture l1, l2, l3;
-	//l1.loadFromFile("Resources/npc.png", sf::IntRect(69, 1, 103, 62));
-	//l2.loadFromFile("Resources/npc.png", sf::IntRect(104, 1, 136, 62));
-	//l3.loadFromFile("Resources/npc.png", sf::IntRect(262, 17, 13, 13));
-	//std::vector<sf::Texture> leftAnimTextures{ l1,l2,l3 };
-
-	//up animation
-	sf::Texture u1, u2, u3;
-	u1.loadFromFile("Resources/npc1.png", sf::IntRect(0, 620, 34, 62));
-	u2.loadFromFile("Resources/npc1.png", sf::IntRect(0, 682, 34, 62));
-	u3.loadFromFile("Resources/npc1.png", sf::IntRect(0, 560, 34, 62));
-	std::vector<sf::Texture> upAnimTextures{ u1,u2,u3 };
-
-	////down animation
-	//sf::Texture d1, d2, d3;
-	//d1.loadFromFile("Resources/npc.png", sf::IntRect(230, 49, 13, 13));
-	//d2.loadFromFile("Resources/npc.png", sf::IntRect(246, 49, 13, 13));
-	//d3.loadFromFile("Resources/npc.png", sf::IntRect(262, 49, 13, 13));
-	//std::vector<sf::Texture> downAnimTextures{ d1, d2, d3 };
-
-	////stop animation
-	sf::Texture s1;
-	s1.loadFromFile("Resources/npc.png", sf::IntRect(0, 682, 34, 62));
-	std::vector<sf::Texture> StopAnimTextures{ s1 };
-
-	//animations[0] = new Animation(leftAnimTextures);
-	//animations[1] = new Animation(rightAnimTextures);
-	animations[2] = new Animation(upAnimTextures);
-	//animations[3] = new Animation(downAnimTextures);
-	animations[4] = new Animation(StopAnimTextures, false, 0.20f);
+	//right animation
+	sf::Texture r1, r2, r3;
+	r1.loadFromFile("Resources/npc3.png", sf::IntRect(0, 0, 34, 62));
+	r2.loadFromFile("Resources/npc3.png", sf::IntRect(0, 62, 34, 62));
+	r3.loadFromFile("Resources/npc3.png", sf::IntRect(0, 124, 34, 62));
+	std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
+	animations[2] = new Animation(rightAnimTextures);
 }
 
 void npc5::draw(RenderWindow& _window)

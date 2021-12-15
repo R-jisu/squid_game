@@ -4,16 +4,15 @@
 
 People::People()
 {
-	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
+	texture.loadFromFile("Resources/maincharacter.png", sf::IntRect(0,0,34,62));
 	texture1.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
-	//wintexture.loadFromFile("Resources/characterdie.png", sf::IntRect(0,0,34,62));
 
 	people.setSize(sf::Vector2f(36, 62));
 	people.setTexture(&texture);
 	SetupAnimations();
 	animator = new Animator(&people);
 	
-	people.setPosition(250 - 10.0f, 600.0f - 60.0f);
+	people.setPosition(0, 300.0f);
 
 }
 
@@ -30,8 +29,6 @@ void People::Move(const float& deltaTime)
 			people.setPosition(people.getPosition().x, people.getPosition().y - dt);
 		break;
 	case Down:
-		if (people.getPosition().y >= 600-60)
-			return;
 		people.setPosition(people.getPosition().x, people.getPosition().y + dt);
 		break;
 	case Left:
@@ -43,10 +40,10 @@ void People::Move(const float& deltaTime)
 	}
 }
 
-void People::update(const float& deltaTime)
+float People::update(const float& deltaTime)
 {
 	stoptime += deltaTime;
-	if (stoptime >= 180) stop = true;
+	if (stoptime >= 80) stop = true;
 
 	FloatRect pos = people.getGlobalBounds();
 	if(victory()==false)
@@ -59,7 +56,7 @@ void People::update(const float& deltaTime)
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 		{
 			nextDir = Down;
-			animator->SetAnimationClip(animations[2]);
+			animator->SetAnimationClip(animations[3]);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 		{
@@ -77,21 +74,20 @@ void People::update(const float& deltaTime)
 			nextDir = None;
 			animator->SetAnimationClip(animations[4]);
 
-		}
-		
+		}	
 		currentDir = nextDir;
 		Move(deltaTime);
 
 	}
 	animator->Update(deltaTime);
-
+	return stoptime;
 }
 
 bool People::victory()
 {
-	if (people.getPosition().y <= 100 - 62)
+	if (people.getPosition().x >= 500)
 	{
-
+		currentDir = None;
 		return true;
 	}
 	return false;
@@ -123,36 +119,32 @@ bool People::Die(const float& deltaTime)
 void People::SetupAnimations()
 {
 	//right animation
-	sf::Texture r1, r2;
-	//sf::Texture r1, r2,r3;
+	sf::Texture r1, r2,r3;
 	r1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 0, 34, 62));
-	r2.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 0, 34, 62));
-	//r3.loadFromFile("Resources/maincharacter.png", sf::IntRect(262, 1, 13, 13));
-	//std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
-	std::vector<sf::Texture> rightAnimTextures{ r1,r2};
+	r2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
+	r3.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 124, 34, 62));
+	std::vector<sf::Texture> rightAnimTextures{ r1,r2,r3 };
 
 	//left animation
-	//sf::Texture l1, l2, l3;
-	sf::Texture l1, l2;
-	l1.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 1, 34, 62));
-	l2.loadFromFile("Resources/maincharacter.png", sf::IntRect(104, 1, 34, 62));
-	//l3.loadFromFile("Resources/maincharacter.png", sf::IntRect(262, 17, 13, 13));
-	//std::vector<sf::Texture> leftAnimTextures{ l1,l2,l3 };
-	std::vector<sf::Texture> leftAnimTextures{ l1,l2};
+	sf::Texture l1, l2, l3;
+	l1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 186, 34, 62));
+	l2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 248, 34, 62));
+	l3.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 310, 34, 62));
+	std::vector<sf::Texture> leftAnimTextures{ l1,l2,l3 };
 
 	//up animation
 	sf::Texture u1, u2, u3;
-	u1.loadFromFile("Resources/maincharacter.png", sf::IntRect(34, 62, 34, 62));
-	u2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 62, 34, 62));
-	u3.loadFromFile("Resources/maincharacter.png", sf::IntRect(69, 62, 34, 62));
+	u1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 558, 34, 62));
+	u2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 620, 34, 62));
+	u3.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 682, 34, 62));
 	std::vector<sf::Texture> upAnimTextures{ u1,u2,u3 };
 
 	//down animation
-	//sf::Texture d1, d2, d3;
-	//d1.loadFromFile("Resources/PacManSprites.png", sf::IntRect(230, 49, 13, 13));
-	//d2.loadFromFile("Resources/PacManSprites.png", sf::IntRect(246, 49, 13, 13));
-	//d3.loadFromFile("Resources/PacManSprites.png", sf::IntRect(262, 49, 13, 13));
-	//std::vector<sf::Texture> downAnimTextures{ d1, d2, d3 };
+	sf::Texture d1, d2, d3;
+	d1.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 372, 34, 62));
+	d2.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 434, 34, 62));
+	d3.loadFromFile("Resources/maincharacter.png", sf::IntRect(0, 496, 34, 62));
+	std::vector<sf::Texture> downAnimTextures{ d1, d2, d3 };
 
 	//stop animation
 	sf::Texture s1;
@@ -163,7 +155,7 @@ void People::SetupAnimations()
 	animations[0] = new Animation(leftAnimTextures);
 	animations[1] = new Animation(rightAnimTextures);
 	animations[2] = new Animation(upAnimTextures);
-	//animations[3] = new Animation(downAnimTextures);
+	animations[3] = new Animation(downAnimTextures);
 	animations[4] = new Animation(StopAnimTextures, false, 0.20f);
 }
 

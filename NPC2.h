@@ -14,8 +14,6 @@ private:
 
 	float speed;
 	float waiting = 0;
-	int isstop = 0;
-	int flag = 0;
 	AudioManager audio;
 public:
 	Animator* animator;
@@ -23,12 +21,10 @@ public:
 	sf::RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
-	Texture texture2;
-	Texture texture3;
 
 	int currentDir = 1;
 	int randdie = 0;
-	npc2(float x, float _speed);
+	npc2(float y, float _speed);
 	void Move(const float& deltaTime);
 	bool victory();
 	void update(const float& deltaTime, bool iswatching);

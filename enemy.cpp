@@ -9,7 +9,7 @@ Younhee::Younhee()
 
 	younhee.setTexture(&texture_front);
 	younhee.setSize(sf::Vector2f(40, 95));
-	younhee.setPosition(220,5);
+	younhee.setPosition(270,3);
 }
 
 bool Younhee::watching()
@@ -22,7 +22,7 @@ bool Younhee::update(const float& deltaTime)
 	if (flag == 1)
 	{
 		watchtimer += deltaTime;
-		if (watchtimer >= 5)
+		if (watchtimer >= 2)
 		{
 			state = watch;
 			younhee.setTexture(&texture_front);

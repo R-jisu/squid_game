@@ -17,8 +17,6 @@ private:
 	float stoptimer = 0;
 	float dieimagetimer = 0;
 	float animetimer = 0;
-	int isstop = 0;
-	int flag = 0;
 	bool dying = false;
 	AudioManager audio;
 public:
@@ -27,12 +25,11 @@ public:
 	sf::RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
-	Texture texture2;
 	Texture texture3;
 
 	int currentDir = 1;
 	int randdie = 0;
-	npc5(float x, float _speed);
+	npc5(float y, float _speed);
 	void Move(const float& deltaTime);
 	bool victory();
 	void update(const float& deltaTime, bool iswatching);

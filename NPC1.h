@@ -11,14 +11,11 @@ using namespace sf;
 class npc : public Younhee
 {
 private:
-	
 	float speed;
-	float waiting = 0;
-	float stoptimer = 0;
-	float dieimagetimer = 0;
+	float waiting = 0; 
+	float stoptimer = 0; 
+	float dieimagetimer = 0; 
 	float animetimer = 0;
-	int isstop = 0;
-	int flag = 0;
 	bool dying = false;
 	AudioManager audio;
 public:
@@ -27,14 +24,11 @@ public:
 	sf::RectangleShape NPC;
 	Texture texture;
 	Texture texture1;
-	Texture texture2;
 	Texture texture3;
 
 	int currentDir = 1;
 	int randdie = 0;
-	npc(float x, float _speed);
-	//bool Die(const float& deltaTime);
-	//bool NPCDie(const float& deltaTime);
+	npc(float y, float _speed);
 	void Move(const float& deltaTime);
 	bool victory();
 	void update(const float& deltaTime, bool iswatching);
