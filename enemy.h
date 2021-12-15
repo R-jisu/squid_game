@@ -22,7 +22,7 @@ private:
 	Texture texture_back;
 	bool iswatching = false;
 public:
-	State state = ready;
+	State state = watch;
 	float watchtimer = 0;
 	Younhee();
 	bool watching();

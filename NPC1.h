@@ -30,8 +30,6 @@ public:
 	Texture texture2;
 	Texture texture3;
 
-	void ChangeAnimation();
-
 	int currentDir = 1;
 	int randdie = 0;
 	npc(float x, float _speed);

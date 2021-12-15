@@ -31,7 +31,6 @@ void npc3::Move(const float& deltaTime)
 		if (NPC.getPosition().y > 0.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			//animator->SetAnimationClip(animations[2]);
 		}
 		break;
 	case 2: //По

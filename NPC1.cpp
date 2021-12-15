@@ -26,13 +26,11 @@ void npc::Move(const float& deltaTime)
 	{
 	case 0: //stop
 		NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y);
-		ChangeAnimation();
 		return;
 	case 1: //up
 		if (NPC.getPosition().y > 0.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			ChangeAnimation();
 		}
 		break;
 	case 2: //¿Þ
@@ -40,22 +38,18 @@ void npc::Move(const float& deltaTime)
 		{
 			NPC.setPosition(NPC.getPosition().x - dt, NPC.getPosition().y);
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			ChangeAnimation();
 		}
 		else
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
-			ChangeAnimation();
 		break;
 	case 3://¿À¸¥
 		if (NPC.getPosition().x < 450.0f)
 		{
 			NPC.setPosition(NPC.getPosition().x + dt, NPC.getPosition().y);
 			NPC.setPosition(NPC.getPosition().x, NPC.getPosition().y - dt);
-			ChangeAnimation();
 		}
 		else
 			NPC.setPosition(NPC.getPosition().x - dt, NPC.getPosition().y);
-			ChangeAnimation();
 		break;
 	}
 }
@@ -66,7 +60,6 @@ void npc::update(const float& deltaTime, bool iswatching)
 	if (waiting >= 2)
 	{
 		currentDir = rand() % 4;
-		ChangeAnimation();
 		waiting = 0;
 	}
 
@@ -183,26 +176,6 @@ void npc::SetupAnimations()
 	animations[4] = new Animation(StopAnimTextures, false, 0.20f);
 }
 
-void npc::ChangeAnimation()
-{
-		switch (currentDir)
-		{
-		case 0:
-			animator->SetAnimationClip(animations[4]);
-		case 2:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		case 3:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		case 1:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		case 4:
-			animator->SetAnimationClip(animations[2]);
-			break;
-		}
-}
 
 void npc::draw(RenderWindow& _window)
 {
