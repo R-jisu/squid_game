@@ -1,6 +1,4 @@
 #include "NPC5.h"
-#include <iostream>
-#include <random>
 
 npc5::npc5(float y, float _speed)
 {
@@ -69,7 +67,6 @@ void npc5::update(const float& deltaTime, bool iswatching)
 	if (stoptimer >= 3)
 	{
 		randdie = rand() % 4 + 1;
-		cout << randdie << endl;
 		stoptimer = 0;
 	}
 

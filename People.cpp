@@ -1,6 +1,5 @@
 #include "People.h"
 #include "enemy.h"
-#include <iostream>
 
 People::People()
 {
@@ -104,7 +103,7 @@ bool People::Die(const float& deltaTime)
 		return true;
 	}
 
-	if ((Younhee::update(deltaTime)) && (currentDir != None))
+	if ((Younghee::update(deltaTime)) && (currentDir != None))
 	{
 		if (flag == false)
 			audio.PlaySound(Sounds::Gun, false, VOLUME);
@@ -156,7 +155,7 @@ void People::SetupAnimations()
 	animations[1] = new Animation(rightAnimTextures);
 	animations[2] = new Animation(upAnimTextures);
 	animations[3] = new Animation(downAnimTextures);
-	animations[4] = new Animation(StopAnimTextures, false, 0.20f);
+	animations[4] = new Animation(StopAnimTextures);
 }
 
 void People::draw(RenderWindow& _window)

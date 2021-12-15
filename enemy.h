@@ -1,6 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
 #include "Audio/AudioManager.h"
@@ -13,7 +11,7 @@ enum State {
 	watch,
 };
 
-class Younhee {
+class Younghee {
 private:
 	int flag = 1;
 	AudioManager audio;
@@ -24,7 +22,7 @@ private:
 public:
 	enum State state = watch;
 	float watchtimer = 0;
-	Younhee();
+	Younghee();
 	bool watching();
 	bool update(const float& deltaTime);
 	void draw(RenderWindow& _window);

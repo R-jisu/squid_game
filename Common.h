@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 #include <iostream>
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
@@ -6,3 +7,4 @@
 #include <stack>
 #include <time.h> 
 #include <string>
+#include <random>

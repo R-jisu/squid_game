@@ -1,6 +1,4 @@
 #include "NPC4.h"
-#include <iostream>
-#include <random>
 npc4::npc4(float y, float _speed)
 {
 	texture.loadFromFile("Resources/npc4.png", sf::IntRect(0, 0, 34, 62));

@@ -1,8 +1,6 @@
 #include "enemy.h"
-#include "SFML/Audio.hpp"
-#include <iostream>
 
-Younhee::Younhee()
+Younghee::Younghee()
 {
 	texture_front.loadFromFile("Resources/0HE.png", sf::IntRect(0, 0, 40, 95));
 	texture_back.loadFromFile("Resources/0HE.png", sf::IntRect(40, 0, 40, 95));
@@ -12,12 +10,12 @@ Younhee::Younhee()
 	younhee.setPosition(270,3);
 }
 
-bool Younhee::watching()
+bool Younghee::watching()
 {
 	return iswatching;
 }
 
-bool Younhee::update(const float& deltaTime)
+bool Younghee::update(const float& deltaTime)
 {
 	if (flag == 1)
 	{
@@ -58,7 +56,7 @@ bool Younhee::update(const float& deltaTime)
 
 }
 
-void Younhee::draw(RenderWindow& _window)
+void Younghee::draw(RenderWindow& _window)
 {
 	_window.draw(younhee);
 }

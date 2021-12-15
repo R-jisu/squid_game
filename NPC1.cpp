@@ -1,8 +1,4 @@
 #include "NPC1.h"
-#include <iostream>
-#include <random>
-#include <time.h> 
-
 npc::npc(float y, float _speed)
 {
 	texture.loadFromFile("Resources/npc3.png", sf::IntRect(0, 0, 34, 62));
@@ -70,7 +66,6 @@ void npc::update(const float& deltaTime, bool iswatching)
 	if (stoptimer >= 3)
 	{
 		randdie = rand() % 4 + 1;
-		cout << randdie << endl;
 		stoptimer = 0;
 	}
 

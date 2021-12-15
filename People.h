@@ -1,6 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "enemy.h"
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
@@ -16,8 +14,7 @@ enum Direction {
 	Down
 };
 
-
-class People : public Younhee
+class People : public Younghee
 {
 private:
 	AudioManager audio;

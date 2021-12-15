@@ -1,6 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
 #include "enemy.h"
@@ -8,7 +6,7 @@
 
 using namespace sf;
 
-class npc4 : public Younhee
+class npc4 : public Younghee
 {
 private:
 	Animator* animator;

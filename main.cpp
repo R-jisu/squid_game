@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-#include "SFML/Audio.hpp"
 #include "People.h"
 #include "Common.h"
 #include "NPC1.h"
@@ -7,10 +5,7 @@
 #include "NPC3.h"
 #include "NPC4.h"
 #include "NPC5.h"
-#include <Windows.h>
 #include "enemy.h"
-
-
 
 using namespace sf;
 using namespace std;
@@ -25,7 +20,7 @@ int main()
 	text.setFont(font);
 	text.setFillColor(Color::Black);
 	text.setPosition(0.0f, 0.0f);
-	text.setCharacterSize(15);
+	text.setCharacterSize(40);
 
 	Text text1;
 	text1.setFont(font);
@@ -65,7 +60,7 @@ int main()
 	npc3 Npc3(200, rand() % 20 + 10);
 	npc4 Npc4(380, rand() % 20 + 10);
 	npc5 Npc5(500, rand() % 20 + 10);
-	Younhee younghee;
+	Younghee younghee;
 	
 	while (window.isOpen())
 	{
@@ -111,7 +106,8 @@ int main()
 		}
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+		if (leftime >=7)
 		{
 			start_flag = 0;
 		}
