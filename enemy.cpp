@@ -32,7 +32,7 @@ bool Younhee::update(const float& deltaTime)
 
 	}
 
-	if (flag == 0 &&!(audio.IsPlayingAudio(Sounds::Death))&& !(audio.IsPlayingAudio(Sounds::GameStart)))
+	if (flag == 0 &&!(audio.IsPlayingAudio(Sounds::younghee)))
 	{
 		watchtimer += deltaTime;
 		state = watch;
@@ -50,7 +50,7 @@ bool Younhee::update(const float& deltaTime)
 		state = ready;
 		iswatching = false;
 		younhee.setTexture(&texture_back);
-		audio.PlaySound(Sounds::Death ,false, VOLUME);
+		audio.PlaySound(Sounds::younghee ,false, VOLUME);
 		watchtimer = 0;
 	}
 	

@@ -101,12 +101,18 @@ bool People::Die(const float& deltaTime)
 {
 	if (stop == true)
 	{
+		if(flag == false)
+			audio.PlaySound(Sounds::Gun, false, VOLUME);
+		flag = true;
 		people.setTexture(&texture1);
 		return true;
 	}
 
 	if ((Younhee::update(deltaTime)) && (currentDir != None))
 	{
+		if (flag == false)
+			audio.PlaySound(Sounds::Gun, false, VOLUME);
+		flag = true;
 		people.setTexture(&texture1);
 		return true;
 	}

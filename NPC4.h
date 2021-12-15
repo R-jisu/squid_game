@@ -4,6 +4,7 @@
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
 #include "enemy.h"
+#include "Audio/AudioManager.h"
 
 using namespace sf;
 
@@ -15,6 +16,7 @@ private:
 	float speed;
 	float waiting = 0;
 	bool dying = false;
+	AudioManager audio;
 public:
 	sf::RectangleShape NPC;
 	Texture texture;

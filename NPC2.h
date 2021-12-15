@@ -4,6 +4,7 @@
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
 #include "enemy.h"
+#include "Audio/AudioManager.h"
 
 using namespace sf;
 
@@ -15,6 +16,7 @@ private:
 	float waiting = 0;
 	int isstop = 0;
 	int flag = 0;
+	AudioManager audio;
 public:
 	Animator* animator;
 	Animation* animations[5];//left, right, up, down, death

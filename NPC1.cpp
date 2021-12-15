@@ -105,6 +105,7 @@ void npc::update(const float& deltaTime, bool iswatching)
 			NPC.setTexture(&texture2);
 			if (dieimagetimer >= 0.3)
 			{
+				audio.PlaySound(Sounds::Gun, false, VOLUME);
 				NPC.setTexture(&texture3);
 				dying = true;
 				dieimagetimer = 0;

@@ -4,6 +4,7 @@
 #include "enemy.h"
 #include "Animation/Animation.h"
 #include "Animation/Animator.h"
+#include "Audio/AudioManager.h"
 
 using namespace sf;
 
@@ -19,10 +20,12 @@ enum Direction {
 class People : public Younhee
 {
 private:
+	AudioManager audio;
 	Animator* animator;
 	Animation* animations[6];//left, right, up, down, death
 	float stoptime = 0;
 	bool stop = false;
+	bool flag = false;
 public:
 	sf::RectangleShape people;
 	Texture texture;

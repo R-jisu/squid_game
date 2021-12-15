@@ -14,25 +14,11 @@ public:
 	bool IsPlayingAudio(Sounds soundType);
 private:
 
-	sf::SoundBuffer gameStartBuffer;
-	sf::Sound gameStartSound;
+	sf::SoundBuffer GunBuffer;
+	sf::Sound GunSound;
 
-	sf::SoundBuffer munchSoundBuffer;
-	sf::Sound munchSound;
+	sf::SoundBuffer youngheeBuffer;
+	sf::Sound youngheeSound;
 
-	sf::SoundBuffer powerSnackBuffer;
-	sf::Sound powerSnackSound;
-
-	sf::SoundBuffer eatGhostBuffer;
-	sf::Sound eatGhostSound;
-
-	sf::SoundBuffer deathBuffer;
-	sf::Sound deathSound;
-
-	sf::SoundBuffer sirenBuffer;
-	sf::Sound sirenSound;
-
-	sf::SoundBuffer retreatingBuffer;
-	sf::Sound retreatingSound;
 };
 
